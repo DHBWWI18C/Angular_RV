@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Room } from '../interfaces/Room';
 import { HttpClient } from 'selenium-webdriver/http';
 import { UserService } from '../services/user.service';
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-login-form',
@@ -22,9 +23,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-      const params = {};
-      this.userService.login(this.data);
-    //alert(result);
+    const params = new HttpParams()
+      .set('username', this.data.username)
+      .set('password', this.data.password);
+      
+    this.userService.login(params);
   }
 
 }

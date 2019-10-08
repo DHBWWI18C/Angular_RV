@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: 'rooms', component: RoomListComponent },
-  { path: 'rooms/1', component: RoomDetailComponent }
+  { path: 'room/:id', component: RoomDetailComponent }
 ];
 
 @NgModule({
