@@ -1,0 +1,36 @@
+<div class="room-card col-8" (dblclick)="bookRoom()">
+    <div class="room-title">
+        <h2>{{room.title}}</h2>  
+    </div>
+    <!-- ngIf: Zeigt img an, wenn Foto(-Pfad) vorhanden -->
+    <img *ngIf="room.images[0]" [src]="room.images[0]" width="300" alt="ALTERNATIVE FÜR IMG">
+    <div class="room-description">
+        <p>{{ room.description }}</p>
+    </div>
+    <p *ngIf="room.beamerAvailable; else beamerNotAvailable"> <!-- wird angezeigt, wenn Beamer verfügbar-->
+        <span class="badge badge-info">Beamer verfügbar</span>
+    </p>
+    <ng-template #beamerNotAvailable> <!-- wird angezeigt, wenn Beamer nicht verfügbar-->
+        <p>
+            <span class="badge badge-secondary">Kein Beamer verfügbar</span>
+        </p>
+    </ng-template>
+    <div [ngSwitch]="room.size">
+        Raumgröße: 
+            <span class="badge badge-secondary" *ngSwitchCase="'SMALL'">Small</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'MEDIUM'">Medium</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'LARGE'">Large</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'XLARGE'">Extra Large</span>
+            <span class="badge badge-secondary" *ngSwitchDefault>Raumgröße nicht definiert</span>
+    </div>
+    <div>
+        Preis:
+        <span class="badge badge-warning">{{ room.price | currency: 'EUR' }}</span>
+    </div>
+
+    <button (click)="bookRoom()">Book this Room</button>
+  
+  </div>
+  
+  
+  

@@ -1,0 +1,24 @@
+<div class="singlePageContainer container">
+    <form class="form-signin">
+        <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
+            <img class="mb-4" src="https://cdn1.iconfinder.com/data/icons/smashicons-medical-yellow-vol-3/60/132_-Penis-_medical_health_healthcare-512.png" alt="" width="72" height="72">
+        <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
+        <h1 class="h3 mb-3 font-weight-normal">Bitte anmelden</h1>
+        <label for="inputUsername" class="sr-only">Benutzername:</label>
+        <!-- value des Input-Elements wird auf data.username gesetzt und bei Änderung durch (input) mit dem Attribut username synchronisiert -->
+        <input [value]="data.username" (input)="data.username = $event.target.value" type="text" id="inputUsername" class="form-control" placeholder="Benutzer" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Passwort {{ data.password}}</label>
+        <input [value]="data.password" (input)="data.password = $event.target.value" type="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Angemeldet bleiben
+            </label>
+        </div>
+        <div class="checkbox mb-3">
+            <a routerLink="/register">Neuen Benutzer anlegen</a>
+        </div>
+        <button (click)="login()" class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
+    </form>
+</div>
