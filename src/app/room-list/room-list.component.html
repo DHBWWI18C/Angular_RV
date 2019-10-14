@@ -1,4 +1,40 @@
-  <!--For-each-Schleife für alle Räume-->
+<div class="container">
+  <form>
+        <div>
+            <mat-radio-group [(ngModel)]="filters.roomSize" name="roomSizeRadioGroup">
+              Raumgröße:
+              <mat-radio-button *ngFor="let size of roomSizes" [value]="size.title | lowercase">{{ size.title }}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <p>Raumgröße-Value: {{ filters.roomSize }}</p>
 
-  <app-room-card *ngFor="let _room of rooms"
-   [room]="_room"></app-room-card>
+    <div>
+      <br>
+      <mat-radio-group [(ngModel)]="filters.beamer" name="beamerRadioGroup">
+        Beamer:
+        <mat-radio-button [value]="1">Ja</mat-radio-button>
+        <mat-radio-button [value]="0">Nein</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <p>Beamer-Value: {{ filters.beamer }}</p>
+<br>
+<mat-form-field>
+    <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Startdatum" required>
+    <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+    <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+    <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput [matDatepicker]="pickerEndDate" placeholder="Enddatum">
+      <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+    </mat-form-field>
+
+    <button (click)="filter()" type="button">Räume filtern!</button>
+  </form>
+</div>
+
+
+<!--For-each-Schleife für alle Räume-->
+<app-room-card *ngFor="let _room of rooms" [room]="_room"></app-room-card>
