@@ -7,23 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  postData = {
-    test: 'my test data'
-  };
+  apiUrl = 'http://localhost:8080';
 
-  apiUrl = 'http://httpbin.org' //'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  login(params: HttpParams) {
-    this.http.post(this.apiUrl + '/post', params)
+  login(username: string, password: string): Observable<any> {
+
+    const params = new HttpParams()
+      .set('username', username)
+      .set('password', password);
+
+    return this.http.post(this.apiUrl + '/auth', params);
   }
 
-  login2(): Observable<any> {
-    return this.http.post(this.apiUrl + '/post', this.postData);
+  logout(){
+    return this.http.post(this.apiUrl + '/logout', {});
   }
 
 
-  getPosts(): Observable<any> {
+  getPost(): Observable<any> {
     return this.http.get('http://jsonplaceholder.typicode.com/posts/1', {});
   }
 }

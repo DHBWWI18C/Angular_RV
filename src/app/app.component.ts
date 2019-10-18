@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CurrentUser } from './interfaces/CurrentUser';
+import { UserService } from './services/user.service';
 
 
 @Component({
@@ -10,4 +11,19 @@ import { CurrentUser } from './interfaces/CurrentUser';
 export class AppComponent {
   title = 'Raumverwaltung';
   currentUser: CurrentUser;
+
+  constructor(private userService: UserService) { }
+
+  logout() {
+    this.userService.logout()
+      .subscribe(
+        (result: string) => {
+          if (result === 'true') {
+            alert('Logout successful.')
+          } else {
+            alert('Logout failed.')
+          }
+        }
+      )
+  }
 }
