@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CurrentUser } from './interfaces/CurrentUser';
 
 
 @Component({
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Raumverwaltung';
-
+  currentUser: CurrentUser;
 }
