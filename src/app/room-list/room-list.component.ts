@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ROOMS } from '../database/db-rooms';
 import { SIZES } from '../database/db-roomSizes';
 import { Size } from '../interfaces/Size';
+import { RoomsService } from '../services/rooms.service';
+import { Room } from '../interfaces/Room';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { Size } from '../interfaces/Size';
 export class RoomListComponent implements OnInit {
 
   roomSizes: Size[];
-  rooms = this.getRoomList();
+  rooms: Room[] = ROOMS;
   filters = {
     roomSize: '',
     beamer: '',
@@ -22,25 +24,28 @@ export class RoomListComponent implements OnInit {
   };
 
   minDate = new Date();
-  
-  constructor() { }
+
+  constructor(private roomService: RoomsService) { }
 
   ngOnInit() {
     this.roomSizes = SIZES;
   }
-  
-  getRoomList(){
-    //TODO Server-Anfrage auf alle Räume
-    //ROOMS ist ein normales Array, definiert in 'db-rooms.ts'
-    return ROOMS;
+
+  getRoomsList() {
+    this.roomService.getRoomsList()
+      .subscribe(
+        (result: Room[]) => {
+          this.rooms = result;
+        }
+      );
   }
 
-  filter(){
-    /*
-      beamer: 1/ 0
-      roomsize: 1/ 2/ 3
-      startDate: dd.mm.yyyy
-      endDate: dd.mm.yyyy
-    */
+  filter() {
+    this.roomService.getRooms(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
+      .subscribe(
+        (result: Room[]) => {
+          this.rooms = result;
+        }
+      );
   }
 }

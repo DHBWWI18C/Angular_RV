@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Room } from '../interfaces/Room';
 import { HttpClient } from 'selenium-webdriver/http';
 import { UserService } from '../services/user.service';
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from "@angular/common/http";
 import { Post } from '../interfaces/Post';
 
 @Component({
@@ -27,16 +27,27 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    /*
-    const params = new HttpParams()
-      .set('username', this.data.username)
-      .set('password', this.data.password);
 
-      Client HTTP + .subscribe() explained:
-      https://stackoverflow.com/questions/46769042/subscribe-to-observable-is-returning-undefined/46782678
-    */
-   console.log('hallo from login()');
-    this.userService.getPosts()
+    this.userService.login(this.data.username, this.data.password)
+      .subscribe(
+        (result: string) => {
+          if (result === 'true') {
+            alert('Loggin successful.')
+          } else {
+            alert('Loggin failed.')
+          }
+        }
+      )
+
+    //Client HTTP + .subscribe() explained:
+    //https://stackoverflow.com/questions/46769042/subscribe-to-observable-is-returning-undefined/46782678
+
+  }
+
+
+  getPost() {
+    console.log('hallo from login()');
+    this.userService.getPost()
       .subscribe(
         (data: Post) => {
           console.log('Hello from subscribe');
@@ -49,12 +60,12 @@ export class LoginFormComponent implements OnInit {
           console.log(this.test);
         }
       );
-      
+
   }
 
 
-  setUserRole(role: string){
-    if(role === 'admin') {
+  setUserRole(role: string) {
+    if (role === 'admin') {
     }
 
   }
