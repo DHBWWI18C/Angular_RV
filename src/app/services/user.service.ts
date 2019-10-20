@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -17,14 +16,18 @@ export class UserService {
       .set('username', username)
       .set('password', password);
 
-    return this.http.post(this.apiUrl + '/auth', params);
+    return this.http.post(config.apiUrl + '/auth', params);
   }
 
-  logout(){
-    return this.http.post(this.apiUrl + '/logout', {});
+  logout(): Observable<any> {
+    return this.http.post(config.apiUrl + '/logout', {});
   }
 
+  getCurrentUser(): Observable<any> {
+    return this.http.get(config.apiUrl + '/user', {})
+  }
 
+  //++++++++++
   getPost(): Observable<any> {
     return this.http.get('http://jsonplaceholder.typicode.com/posts/1', {});
   }
