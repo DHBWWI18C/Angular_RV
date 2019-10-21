@@ -5,7 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MAT_DATE_LOCALE } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -14,6 +18,8 @@ import { RoomCardComponent } from './room-card/room-card.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CurrentUserComponent } from './current-user/current-user.component';
+import { BookingComponent } from './booking/booking.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'rooms', component: RoomListComponent },
+  { path: 'user', component: CurrentUserComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -33,8 +40,10 @@ const appRoutes: Routes = [
     RoomCardComponent,
     RoomListComponent,
     RoomDetailComponent,
-    NotFoundComponent
-    ],
+    NotFoundComponent,
+    CurrentUserComponent,
+    BookingComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -48,10 +57,15 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatToolbarModule
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+    //Datumsfelder-Einstellung
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
   ],
   bootstrap: [AppComponent, LoginFormComponent, RegisterFormComponent, RoomDetailComponent]
 })

@@ -31,9 +31,12 @@
       <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
     </mat-form-field>
 
-    <button (click)="filter()" type="button">Räume filtern!</button>
+    <button mat-raised-button color="accent" (click)="filter()" type="button">Räume filtern!</button>
+    <a mat-button routerLink="/rooms"><span>Reset</span></a>
   </form>
 </div>
+<p>Start-Value: {{ filters.startDate }}</p>
+<p>End-Value: {{ filters.endDate }}</p>
 
 
 <!--For-each-Schleife für alle Räume-->
