@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Room } from '../interfaces/Room';
-import { HttpClient } from 'selenium-webdriver/http';
 import { UserService } from '../services/user.service';
-import { HttpParams } from "@angular/common/http";
 import { Post } from '../interfaces/Post';
 
 @Component({
@@ -13,13 +10,15 @@ import { Post } from '../interfaces/Post';
 })
 export class LoginFormComponent implements OnInit {
 
+  showErrorBanner: boolean = false;
+
   test: Post;
 
   data = {
     username: '',
     password: ''
   };
-
+  
   constructor(private userService: UserService) { }
 
 
@@ -27,14 +26,13 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-
     this.userService.login(this.data.username, this.data.password)
       .subscribe(
         (result: string) => {
-          if (result === 'true') {
-            alert('Loggin successful.')
+          if (result === 'true' ) {
+            alert('Loggin successful. -> redirect');
           } else {
-            alert('Loggin failed.')
+            alert('Loggin failed. -> errorMessage');
           }
         }
       )
