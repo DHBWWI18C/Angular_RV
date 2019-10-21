@@ -43,7 +43,7 @@ export class RoomsService {
     }
 
     if (beamerAvailable !== null)
-      params.set('beamerAvailable', String(beamerAvailable));
+      params.set('beamerAvailable', beamerAvailable);
 
     if (startDate !== null || startDate === "")
       params.set('startDate', startDate);
