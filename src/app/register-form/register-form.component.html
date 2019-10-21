@@ -1,35 +1,86 @@
+<div>
+  <form class="form-register">
+    <h1 class="h3 mb-3 font-weight-normal">Neuen Benutzer anlegen</h1>
+    <div>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Benutzername</mat-label>
+          <input matInput placeholder="badman88" required>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input matInput placeholder="max@mustermann.de" required>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Vorname</mat-label>
+          <input matInput placeholder="Max" required>
+          <mat-icon matSuffix>account_box</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Nachname</mat-label>
+          <input matInput placeholder="Mustermann" required>
+          <mat-icon matSuffix>account_box</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Passwort</mat-label>
+          <input type="password" matInput placeholder="#Iambad88" required>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+      </p>
 
-    <div class="singlePageContainer container">
-        <form class="form-signin">
-          <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
-            <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
-            <h1 class="h3 mb-3 font-weight-normal">Neuen Benutzer anlegen</h1>
-            <p class="registerHeading">Benutzernamen festlegen</p>
-            <label for="inputUsername" class="sr-only">Benutzername</label>
-            <input [value]="data.username" (input)="data.username = $event.target.value" type="text" id="inputUsername" class="form-control" placeholder="Benutzernamen" required autofocus>
-  
-            <p class="registerHeading">Vornamen angeben</p>
-            <label for="inputFirstName" class="sr-only">Vornamen</label>
-            <input [value]="data.firstName" (input)="data.firstName = $event.target.value" type="text" id="inputFirstName" class="form-control" placeholder="Vornamen" required>
-  
-            <p class="registerHeading">Nachnamen angeben</p>
-            <label for="inputLastName" class="sr-only">Nachnamen</label>
-            <input [value]="data.lastName" (input)="data.lastName = $event.target.value" type="text" id="inputLastName" class="form-control" placeholder="Nachnamen" required>
-  
-            <p class="registerHeading">E-Mail angeben</p>
-            <label for="inputEmail" class="sr-only">E-Mail</label>
-            <input [value]="data.email" (input)="data.email = $event.target.value" type="email" id="inputEmail" class="form-control" placeholder="E-Mail" required>
-  
-            <p class="registerHeading">Passwort festlegen</p>
-            <label for="inputPassword" class="sr-only">Passwort</label>
-            <input [value]="data.password" (input)="data.password = $event.target.value" type="password" id="inputPassword" class="form-control" placeholder="Passwort">
-  
-            <button (click)="register()" class="btn btn-lg btn-primary btn-block" type="submit">Registrieren</button>
-            <hr />
-            Sie haben bereits einen Account?
-            <!-- TODO verlinken-->
-            <a routerLink="/login">
-              <button class="btn btn-lg btn-secondary btn-block" type="submit">Einloggen</button>
-            </a>
-          </form>
-        </div>
+      <button (click)="register()" mat-raised-button color="primary">Registrieren</button>
+    </div>
+
+    <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
+    <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
+    <!-- value des Input-Elements wird auf data.username gesetzt und bei Änderung durch (input) mit dem Attribut username synchronisiert -->
+
+    <!--
+    <p class="registerHeading">Benutzernamen festlegen</p>
+    <label for="inputUsername" class="sr-only">Benutzername</label>
+    <input [value]="data.username" (input)="data.username = $event.target.value" type="text" id="inputUsername"
+      class="form-control" placeholder="Benutzernamen" required autofocus>
+
+    <p class="registerHeading">Vornamen angeben</p>
+    <label for="inputFirstName" class="sr-only">Vornamen</label>
+    <input [value]="data.firstName" (input)="data.firstName = $event.target.value" type="text" id="inputFirstName"
+      class="form-control" placeholder="Vornamen" required>
+
+    <p class="registerHeading">Nachnamen angeben</p>
+    <label for="inputLastName" class="sr-only">Nachnamen</label>
+    <input [value]="data.lastName" (input)="data.lastName = $event.target.value" type="text" id="inputLastName"
+      class="form-control" placeholder="Nachnamen" required>
+
+    <p class="registerHeading">E-Mail angeben</p>
+    <label for="inputEmail" class="sr-only">E-Mail</label>
+    <input [value]="data.email" (input)="data.email = $event.target.value" type="email" id="inputEmail"
+      class="form-control" placeholder="E-Mail" required>
+
+    <p class="registerHeading">Passwort festlegen</p>
+    <label for="inputPassword" class="sr-only">Passwort</label>
+    <input [value]="data.password" (input)="data.password = $event.target.value" type="password" id="inputPassword"
+      class="form-control" placeholder="Passwort">
+
+
+          <button (click)="register()" class="btn btn-lg btn-primary btn-block" type="submit">Registrieren</button>
+
+  -->
+
+    <hr />
+    Sie haben bereits einen Account?
+    <!-- TODO verlinken-->
+    <a routerLink="/login">
+      <button mat-raised-button color="accent">Zum Login</button>
+    </a>
+  </form>
+</div>
