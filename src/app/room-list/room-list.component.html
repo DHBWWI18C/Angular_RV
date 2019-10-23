@@ -1,41 +1,95 @@
 <div class="container">
-  <form>
-        <div>
-            <mat-radio-group [(ngModel)]="filters.roomSize" name="roomSizeRadioGroup">
-              Raumgröße:
-              <mat-radio-button *ngFor="let size of roomSizes" [value]="size.title | lowercase">{{ size.title }}</mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <p>Raumgröße-Value: {{ filters.roomSize }}</p>
 
-    <div>
-      <br>
-      <mat-radio-group [(ngModel)]="filters.beamer" name="beamerRadioGroup">
-        Beamer:
-        <mat-radio-button [value]="1">Ja</mat-radio-button>
-        <mat-radio-button [value]="0">Nein</mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <p>Beamer-Value: {{ filters.beamer }}</p>
-<br>
-<mat-form-field>
-    <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Startdatum" required>
-    <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
-    <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
-    <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
-  </mat-form-field>
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Raumgröße</mat-panel-title>
+        <mat-panel-description>
+          Definiere eine gewünschte Raumgröße..
+          <mat-icon>business</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-  <mat-form-field>
-      <input matInput [matDatepicker]="pickerEndDate" placeholder="Enddatum">
-      <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
-    </mat-form-field>
+      <div>
+        <mat-radio-group [(ngModel)]="filters.roomSize" name="roomSizeRadioGroup">
+          Raumgröße:
+          <mat-radio-button *ngFor="let size of roomSizes" [value]="size.title | lowercase">{{ size.title }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <p>Raumgröße-Value: {{ filters.roomSize }}</p>
 
-    <button mat-raised-button color="accent" (click)="filter()" type="button">Räume filtern!</button>
-    <a mat-button routerLink="/rooms"><span>Reset</span></a>
-  </form>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Beamer
+        </mat-panel-title>
+        <mat-panel-description>
+          Beamer gefällig?
+          <mat-icon>theaters</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <br>
+        <mat-radio-group [(ngModel)]="filters.beamer" name="beamerRadioGroup">
+          Beamer:
+          <mat-radio-button [value]="1">Ja</mat-radio-button>
+          <mat-radio-button [value]="0">Nein</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <p>Beamer-Value: {{ filters.beamer }}</p>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Zeitraum
+        </mat-panel-title>
+        <mat-panel-description>
+          Definiere den Zeitraum deiner Buchung..
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Startdatum" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+        <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+        <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerEndDate" [value]="filters.endDate"
+          (input)="filters.endDate = $event.target.value" placeholder="Enddatum">
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+  <br>
+  <button mat-raised-button color="accent" (click)="filter()" type="button">Räume filtern!</button>
+  <a mat-button routerLink="/rooms"><span>Reset</span></a>
 </div>
-<p>Start-Value: {{ filters.startDate }}</p>
+<p>Start-Value: {{ startdate.value }}</p>
 <p>End-Value: {{ filters.endDate }}</p>
 
 

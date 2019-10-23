@@ -1,54 +1,35 @@
 <div class="container">
     <form class="form-signin">
-        <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
-        <img class="mb-4"
-            src="https://cdn1.iconfinder.com/data/icons/smashicons-medical-yellow-vol-3/60/132_-Penis-_medical_health_healthcare-512.png"
-            alt="" width="72" height="72">
-        <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
         <h1 class="h3 mb-3 font-weight-normal">Bitte anmelden</h1>
 
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Benutzername</mat-label>
-                <input matInput placeholder="badman88" required>
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            </mat-form-field>
-        </p>
+        <mat-form-field appearance="outline">
+            <mat-label>Benutzername</mat-label>
+            <input matInput (input)="data.username = $event.target.value" placeholder="badman88" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
 
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Passwort</mat-label>
-                <input type="password" matInput placeholder="#Iambad88" required>
-                <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
-        </p>
+        <mat-form-field appearance="outline">
+            <mat-label>Passwort</mat-label>
+            <input matInput (input)="data.password = $event.target.value" type="password" placeholder="#Iambad88"
+                required>
+            <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+        <br>
+        <div class="mb-3">
+            <mat-slide-toggle>Anmeldung merken</mat-slide-toggle>
+        </div>
+        <br>
         <button (click)="login()" mat-raised-button color="primary">Login</button>
 
 
         <hr />
         <p>
-            Sie haben noch kein Account?
+            Sie haben noch keinen Account?
         </p>
         <a routerLink="/register">
             <button mat-raised-button color="accent">Zur Registrierung</button>
         </a>
-        <!--
-        <label for="inputUsername" class="sr-only">Benutzername:</label>
-        <input [value]="data.username" (input)="data.username = $event.target.value" type="text" id="inputUsername"
-            class="form-control" placeholder="Benutzer" required autofocus>
 
-        <label for="inputPassword" class="sr-only">Passwort {{ data.password}}</label>
-        <input [value]="data.password" (input)="data.password = $event.target.value" type="password" id="inputPassword"
-            class="form-control" placeholder="Passwort" required>
-
-        <div class="mb-3">
-            <mat-slide-toggle>Slide me!</mat-slide-toggle>
-        </div>
-        <div class="mb-3">
-            <a routerLink="/register">Neuen Benutzer anlegen</a>
-        </div>
-        <button (click)="login()" class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
--->
     </form>
 
     <div *ngIf="showErrorBanner" class="alert alert-warning alert-dismissible fade show" role="alert" #errorBanner>
