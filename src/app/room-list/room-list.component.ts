@@ -5,6 +5,7 @@ import { SIZES } from '../database/db-roomSizes';
 import { Size } from '../interfaces/Size';
 import { RoomsService } from '../services/rooms.service';
 import { Room } from '../interfaces/Room';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Room } from '../interfaces/Room';
   styleUrls: ['./room-list.component.css']
 })
 export class RoomListComponent implements OnInit {
+  startdate = new FormControl(new Date());
 
   roomSizes: Size[];
   rooms: Room[] = ROOMS;
@@ -24,6 +26,7 @@ export class RoomListComponent implements OnInit {
   };
 
   minDate = new Date();
+  step = 0; //Filter-
 
   constructor(private roomService: RoomsService) { }
 
@@ -47,5 +50,18 @@ export class RoomListComponent implements OnInit {
           this.rooms = result;
         }
       );
+  }
+
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }

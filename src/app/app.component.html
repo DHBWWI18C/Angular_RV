@@ -1,5 +1,6 @@
 <!-- Toolbar -->
-<mat-toolbar color="primary">
+<nav>
+<mat-toolbar color="primary" class="navbar navbar-expand">
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
@@ -8,21 +9,21 @@
     <span class="menu-spacer"></span>
     <div>
       <a mat-button routerLink="/">
-        <img width="60" alt="Raumverwaltung Logo"
-          src="https://cdn4.iconfinder.com/data/icons/real-estate-glyph-circle/2048/665_-_Bed_Room-512.png" />
         <span>Welcome</span>
       </a>
       <a mat-button routerLink="/rooms"><span>Raumübersicht</span></a>
       <a mat-button routerLink="/login"><span>Login</span></a>
       <a mat-button routerLink="/register"><span>Registrieren</span></a>
       <a mat-button routerLink="/user"><span>Mein Benutzer</span></a>
+      <a mat-button routerLink="/bookings"><span>Meine Buchungen</span></a>
 
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+</nav>
 
 <!--
-<div class="toolbar" role="banner">
+<div class="toolbar navbar" role="banner">
   <a routerLink="/">
     <img width="60" alt="Raumverwaltung Logo"
       src="https://cdn4.iconfinder.com/data/icons/real-estate-glyph-circle/2048/665_-_Bed_Room-512.png" />
@@ -31,6 +32,7 @@
   <a routerLink="/rooms"><span>Raumübersicht</span></a>
   <a routerLink="/login"><span>Login</span></a>
   <a routerLink="/register"><span>Registrieren</span></a>
+  <a routerLink="/user"><span>Mein Benutzer</span></a>
   <div class="spacer"></div>
 
   <button (click)="logout()" type="button" class="btn btn-outline-light">
@@ -42,8 +44,8 @@
 <div class="content" role="main">
 
   <!-- Highlight Card -->
+<!--
   <div class="card highlight-card card-small">
-
     <svg id="rocket" alt="Rocket Ship" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678"
       viewBox="0 0 101.678 101.678">
       <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
@@ -70,8 +72,8 @@
     </svg>
 
   </div>
-
 </div>
+-->
 
 <!-- * * * * * * * * * * * Main * * * * * * * * * * * -->
 <!-- Durch Angular-Routing wird entsprechende Datei gerendert (Konfiguration in app.module.ts) -->

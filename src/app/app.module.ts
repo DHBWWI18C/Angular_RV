@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -22,12 +23,12 @@ import { CurrentUserComponent } from './current-user/current-user.component';
 import { BookingComponent } from './booking/booking.component';
 
 
+
 const appRoutes: Routes = [
-  { path: '', component: AppComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
-  { path: 'rooms', component: RoomListComponent },
+  { path: '', component: RoomListComponent },
   { path: 'user', component: CurrentUserComponent },
   { path: '**', component: NotFoundComponent }
 ];
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatSlideToggleModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatExpansionModule
   ],
   providers: [
     //Datumsfelder-Einstellung

@@ -1,45 +1,37 @@
-<div>
+<div class="container">
   <form class="form-register">
-    <h1 class="h3 mb-3 font-weight-normal">Neuen Benutzer anlegen</h1>
-    <div>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Benutzername</mat-label>
-          <input matInput placeholder="badman88" required>
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="max@mustermann.de" required>
-          <mat-icon matSuffix>email</mat-icon>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Vorname</mat-label>
-          <input matInput placeholder="Max" required>
-          <mat-icon matSuffix>account_box</mat-icon>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Nachname</mat-label>
-          <input matInput placeholder="Mustermann" required>
-          <mat-icon matSuffix>account_box</mat-icon>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Passwort</mat-label>
-          <input type="password" matInput placeholder="#Iambad88" required>
-          <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
-      </p>
+    <h1 class="h3 mb-3 font-weight-normal">Benutzer anlegen</h1>
+      <mat-form-field appearance="outline">
+        <mat-label>Benutzername</mat-label>
+        <input matInput placeholder="badman88" required>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
 
-      <button (click)="register()" mat-raised-button color="primary">Registrieren</button>
-    </div>
+      <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput placeholder="max@mustermann.de" required>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Vorname</mat-label>
+        <input matInput placeholder="Max" required>
+        <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nachname</mat-label>
+        <input matInput placeholder="Mustermann" required>
+        <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Passwort</mat-label>
+        <input type="password" matInput placeholder="#Iambad88" required>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <br>
+        <button (click)="register()" mat-raised-button color="primary">Registrieren</button>
 
     <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
     <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
