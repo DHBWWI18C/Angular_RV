@@ -2,39 +2,39 @@
     <form class="form-register">
         <h1 class="h3 mb-3 font-weight-normal">Benutzer verwalten</h1>
         <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" >
                 <mat-label>Benutzername</mat-label>
-                <input matInput placeholder="badman88" required>
+                <input matInput [disabled]="!editUser" placeholder="badman88" value="hallo" required> 
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>E-Mail</mat-label>
                 <!-- [disabled] PLATZHALTER FÜR ADMIN-CONTROL-->
-                <input matInput [disabled]="true" placeholder="max@mustermann.de" required>
+                <input matInput [disabled]="!editUser" placeholder="max@mustermann.de" required>
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Vorname</mat-label>
-                <input matInput placeholder="Max" required>
+                <input matInput [disabled]="!editUser" placeholder="Max" required>
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Nachname</mat-label>
-                <input matInput placeholder="Mustermann" required>
+                <input matInput [disabled]="!editUser" placeholder="Mustermann" required>
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Passwort</mat-label>
-                <input type="password" matInput placeholder="#Iambad88" required>
+                <input type="password" matInput [disabled]="!editUser" placeholder="#Iambad88" required>
                 <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
 
-
-            <button (click)="saveUser()" mat-raised-button color="primary">Speichern</button>
+            <button (click)="editUser = !editUser" mat-raised-button color="accent">{{ editUser ? 'Abbrechen' : 'Bearbeiten' }}</button>
+            <button *ngIf="editUser" (click)="saveUser()" mat-raised-button color="primary" id="safeButton">Speichern</button>
             <br>
         </div>
     </form>

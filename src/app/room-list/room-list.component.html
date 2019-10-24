@@ -62,7 +62,7 @@
       </mat-expansion-panel-header>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Startdatum" required>
+        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Von" required>
         <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
         <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
         <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
@@ -70,7 +70,7 @@
 
       <mat-form-field>
         <input matInput [min]="minDate" [matDatepicker]="pickerEndDate" [value]="filters.endDate"
-          (input)="filters.endDate = $event.target.value" placeholder="Enddatum">
+          (input)="filters.endDate = $event.target.value" placeholder="Bis">
         <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
       </mat-form-field>

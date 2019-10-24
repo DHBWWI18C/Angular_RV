@@ -3,6 +3,8 @@ import { Room } from '../interfaces/Room';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RoomsService } from '../services/rooms.service';
 import { switchMap } from 'rxjs/operators';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BookingService } from '../services/booking.service';
 
 
 @Component({
@@ -13,18 +15,40 @@ import { switchMap } from 'rxjs/operators';
 export class RoomDetailComponent implements OnInit {
   //room$: Room;
 
-  constructor(/*
-      private room: Room,
-      private route: ActivatedRoute,
-      private roomService: RoomsService
-      */) { }
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  endDate: Date;
+  minDate = new Date();
+
+  bookingCreated: boolean = false;
+  
+  constructor(
+    private _formBuilder: FormBuilder,
+    private bookingService: BookingService
+    ) {}
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      startDateCtl: ['', Validators.required],
+      endDateCtl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({ 
+      agbCheckBoxCrl: ['', Validators.requiredTrue], //
+    });
+  
     /*
     var roo = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.roomService.getRoom(params.get('id')));
     */
+  }
+
+  bookRoom(){
+    //this.bookingService.create()
+    this.bookingCreated = true;
+
   }
 
 }
