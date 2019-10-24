@@ -28,8 +28,8 @@ export class LoginFormComponent implements OnInit {
   login() {
     this.userService.login(this.data.username, this.data.password)
       .subscribe(
-        (result: string) => {
-          if (result === 'true' ) {
+        (result: boolean) => {
+          if (result) {
             alert('Loggin successful. -> redirect');
           } else {
             alert('Loggin failed. -> errorMessage');
