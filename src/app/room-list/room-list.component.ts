@@ -18,6 +18,7 @@ export class RoomListComponent implements OnInit {
 
   roomSizes: Size[];
   rooms: Room[] = ROOMS;
+  
   filters = {
     roomSize: '',
     beamer: '',
@@ -44,6 +45,8 @@ export class RoomListComponent implements OnInit {
   }
 
   filter() {
+    this.step = 0;  //'step' definiert offenes '<mat-expansion-panel>'-Element
+
     this.roomService.getRooms(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
       .subscribe(
         (result: Room[]) => {

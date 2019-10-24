@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentUserComponent implements OnInit {
 
+  editUser: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -14,6 +15,6 @@ export class CurrentUserComponent implements OnInit {
 
 
   saveUser(){
-    
+    this.editUser = false;
   }
 }

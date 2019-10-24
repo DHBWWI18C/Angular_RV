@@ -1,32 +1,60 @@
-<div id="demo" class="carousel slide" data-ride="carousel">
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [editable]="!bookingCreated" [stepControl]="firstFormGroup">
+    <!--editable: zurück gehen erlauben-->
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Zeitraum wählen</ng-template>
+      <mat-form-field>
+        <input matInput formControlName="startDateCtl" [min]="minDate" [matDatepicker]="pickerStartDate"
+          placeholder="Von" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+        <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+        <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+      </mat-form-field>
 
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li>
-      <li data-target="#demo" data-slide-to="1"></li>
-      <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-  
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-            <img src="./assets/room1_1.jpg" alt="pic1">
-        <!--<img src="{{ room.pictures[0] }}" alt="picture 1">-->
+      <mat-form-field>
+        <input matInput formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate" [value]="endDate"
+          placeholder="Bis" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+      </mat-form-field>
+
+      <!--<p>Start-Value: {{ startdate.value }}</p>
+        <p>End-Value: {{ endDate }}</p>-->
+      <div>
+        <button mat-button matStepperNext>Next</button>
       </div>
-      <div class="carousel-item">
-            <img src="./assets/room1_2.jpg" alt="pic2">
+    </form>
+  </mat-step>
+  <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <!--<mat-step [editable]="false">
+        <form > -->
+      <ng-template matStepLabel>Weitere Sonderleistungen buchen</ng-template>
+
+      <br>
+      <mat-slide-toggle>Beamer hinzufügen</mat-slide-toggle>
+      <mat-slide-toggle>Verpflegung hinzufügen</mat-slide-toggle>
+      <br>
+      <section class="example-section">
+        <mat-checkbox [(ngModel)]="agbAccepted" name="orderButton" formControlName="agbCheckBoxCrl">
+          Ich habe die allgemeinen Geschäftsbedingungen gelesen und akzeptiere diese
+        </mat-checkbox>
+      </section>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext color="warn" [disabled]="!agbAccepted" (click)="bookRoom()">Verbindlich
+          buchen</button>
       </div>
-      <div class="carousel-item">
-            <img src="./assets/room1_3.jpg" alt="pic3">
-      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Geschafft!</ng-template>
+    You are now done.
+    <div>
+      <!--<button mat-button matStepperPrevious>Back</button>-->
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <!--TODO reset vllt in Suche noch einbauen-->
     </div>
-  
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  
-  </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -1,7 +1,7 @@
-<div class="container">
-
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+<!-- FILTER-REGION -->
+<div class="container-fluid searchDiv">
+  <mat-accordion class="headers-align">
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>Raumgröße</mat-panel-title>
         <mat-panel-description>
@@ -12,7 +12,6 @@
 
       <div>
         <mat-radio-group [(ngModel)]="filters.roomSize" name="roomSizeRadioGroup">
-          Raumgröße:
           <mat-radio-button *ngFor="let size of roomSizes" [value]="size.title | lowercase">{{ size.title }}
           </mat-radio-button>
         </mat-radio-group>
@@ -21,25 +20,24 @@
 
 
       <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="primary" (click)="nextStep()">Weiter</button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Beamer
         </mat-panel-title>
         <mat-panel-description>
           Beamer gefällig?
-          <mat-icon>theaters</mat-icon>
+          <mat-icon>videocam</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <div>
         <br>
         <mat-radio-group [(ngModel)]="filters.beamer" name="beamerRadioGroup">
-          Beamer:
           <mat-radio-button [value]="1">Ja</mat-radio-button>
           <mat-radio-button [value]="0">Nein</mat-radio-button>
         </mat-radio-group>
@@ -47,12 +45,12 @@
       <p>Beamer-Value: {{ filters.beamer }}</p>
 
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="warn" (click)="prevStep()">Zurück</button>
+        <button mat-button color="primary" (click)="nextStep()">Weiter</button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Zeitraum
@@ -64,22 +62,25 @@
       </mat-expansion-panel-header>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Startdatum" required>
+        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Von" required>
         <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
         <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
         <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [matDatepicker]="pickerEndDate" [value]="filters.endDate"
-          (input)="filters.endDate = $event.target.value" placeholder="Enddatum">
+        <input matInput [min]="minDate" [matDatepicker]="pickerEndDate" [value]="filters.endDate"
+          (input)="filters.endDate = $event.target.value" placeholder="Bis">
         <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
       </mat-form-field>
 
+      <p>Start-Value: {{ startdate.value }}</p>
+      <p>End-Value: {{ filters.endDate }}</p>
+
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">End</button>
+        <button mat-button color="warn" (click)="prevStep()">Zurück</button>
+        <button mat-button color="primary" (click)="filter()">Filtern</button>
       </mat-action-row>
     </mat-expansion-panel>
 
@@ -87,11 +88,10 @@
 
   <br>
   <button mat-raised-button color="accent" (click)="filter()" type="button">Räume filtern!</button>
-  <a mat-button routerLink="/rooms"><span>Reset</span></a>
+  <a mat-button routerLink="/"><span>Reset</span></a>
 </div>
-<p>Start-Value: {{ startdate.value }}</p>
-<p>End-Value: {{ filters.endDate }}</p>
 
-
+<br>
 <!--For-each-Schleife für alle Räume-->
+
 <app-room-card *ngFor="let _room of rooms" [room]="_room"></app-room-card>
