@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/Post';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login-form',
@@ -19,21 +20,30 @@ export class LoginFormComponent implements OnInit {
     password: ''
   };
   
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private _snackBar: MatSnackBar
+    ) { }
 
 
   ngOnInit() {
   }
 
   login() {
+    this._snackBar.open('Login sagt "Hallo"', 'Ok', {
+      duration: 2000,
+    });
     this.userService.login(this.data.username, this.data.password)
       .subscribe(
         (result: boolean) => {
           if (result) {
-            alert('Loggin successful. -> redirect');
+            this._snackBar.open('Login erfolgreich', 'Ok', {
+              duration: 2000,
+            });
           } else {
-            alert('Loggin failed. -> errorMessage');
-          }
+            this._snackBar.open('Login leider nicht erfolgreich', 'Ok', {
+              duration: 2000,
+            });          }
         }
       )
 

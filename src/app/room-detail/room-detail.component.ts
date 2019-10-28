@@ -5,6 +5,7 @@ import { RoomsService } from '../services/rooms.service';
 import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookingService } from '../services/booking.service';
+import { ROOMS } from '../database/db-rooms';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class RoomDetailComponent implements OnInit {
   endDate: Date;
   minDate = new Date();
 
+  currentRoom: Room;
   bookingCreated: boolean = false;
   
   constructor(
@@ -37,6 +39,7 @@ export class RoomDetailComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({ 
       agbCheckBoxCrl: ['', Validators.requiredTrue], //
     });
+    this.currentRoom = this.getRoomById(1);
   
     /*
     var roo = this.route.paramMap.pipe(
@@ -49,6 +52,11 @@ export class RoomDetailComponent implements OnInit {
     //this.bookingService.create()
     this.bookingCreated = true;
 
+  }
+
+  getRoomById(id): Room{
+    let room = ROOMS[id];
+    return room;
   }
 
 }

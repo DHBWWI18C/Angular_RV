@@ -1,60 +1,72 @@
-<mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step [editable]="!bookingCreated" [stepControl]="firstFormGroup">
-    <!--editable: zurück gehen erlauben-->
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Zeitraum wählen</ng-template>
-      <mat-form-field>
-        <input matInput formControlName="startDateCtl" [min]="minDate" [matDatepicker]="pickerStartDate"
-          placeholder="Von" required>
-        <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
-        <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
-        <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
-      </mat-form-field>
+<h1 class="h3 mb-3 font-weight-normal">Raum buchen</h1>
+<div class="row">
+  <div class="col-5">
+    <app-room-card [room]="currentRoom" [showBookButton]="false">
 
-      <mat-form-field>
-        <input matInput formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate" [value]="endDate"
-          placeholder="Bis" required>
-        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
-      </mat-form-field>
+    </app-room-card>
+  </div>
+  <div class="col-7">
 
-      <!--<p>Start-Value: {{ startdate.value }}</p>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+      <mat-step [editable]="!bookingCreated" [stepControl]="firstFormGroup">
+        <!--editable: zurück gehen erlauben-->
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Zeitraum wählen</ng-template>
+          <mat-form-field>
+            <input matInput formControlName="startDateCtl" [min]="minDate" [matDatepicker]="pickerStartDate"
+              placeholder="Von" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+            <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+            <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate"
+              [value]="endDate" placeholder="Bis" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+          </mat-form-field>
+
+          <!--<p>Start-Value: {{ startdate.value }}</p>
         <p>End-Value: {{ endDate }}</p>-->
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <!--<mat-step [editable]="false">
+          <div>
+            <button mat-button matStepperNext>Weiter</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <!--<mat-step [editable]="false">
         <form > -->
-      <ng-template matStepLabel>Weitere Sonderleistungen buchen</ng-template>
+          <ng-template matStepLabel>Weitere Sonderleistungen buchen</ng-template>
 
-      <br>
-      <mat-slide-toggle>Beamer hinzufügen</mat-slide-toggle>
-      <mat-slide-toggle>Verpflegung hinzufügen</mat-slide-toggle>
-      <br>
-      <section class="example-section">
-        <mat-checkbox [(ngModel)]="agbAccepted" name="orderButton" formControlName="agbCheckBoxCrl">
-          Ich habe die allgemeinen Geschäftsbedingungen gelesen und akzeptiere diese
-        </mat-checkbox>
-      </section>
+          <br>
+          <mat-slide-toggle>Beamer hinzufügen</mat-slide-toggle>
+          <mat-slide-toggle>Verpflegung hinzufügen</mat-slide-toggle>
+          <br>
+          <section class="example-section">
+            <mat-checkbox [(ngModel)]="agbAccepted" name="orderButton" formControlName="agbCheckBoxCrl">
+              Ich habe die allgemeinen Geschäftsbedingungen gelesen und akzeptiere diese
+            </mat-checkbox>
+          </section>
 
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button matStepperNext color="warn" [disabled]="!agbAccepted" (click)="bookRoom()">Verbindlich
-          buchen</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Geschafft!</ng-template>
-    You are now done.
-    <div>
-      <!--<button mat-button matStepperPrevious>Back</button>-->
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      <!--TODO reset vllt in Suche noch einbauen-->
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+          <div>
+            <button mat-button matStepperPrevious>Zurück</button>
+            <button mat-raised-button matStepperNext color="warn" [disabled]="!agbAccepted" (click)="bookRoom()">
+              Verbindlich buchen
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Geschafft!</ng-template>
+        You are now done.
+        <div>
+          <!--<button mat-button matStepperPrevious>Back</button>-->
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <!--TODO reset vllt in Suche noch einbauen-->
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

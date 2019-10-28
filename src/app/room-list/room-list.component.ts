@@ -27,7 +27,7 @@ export class RoomListComponent implements OnInit {
   };
 
   minDate = new Date();
-  step = 0; //Filter-
+  activePanel = 0; //Filter-Panels 
 
   constructor(private roomService: RoomsService) { }
 
@@ -45,7 +45,7 @@ export class RoomListComponent implements OnInit {
   }
 
   filter() {
-    this.step = 0;  //'step' definiert offenes '<mat-expansion-panel>'-Element
+    this.activePanel = 0;  //'step' definiert offenes '<mat-expansion-panel>'-Element
 
     this.roomService.getRooms(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
       .subscribe(
@@ -56,15 +56,15 @@ export class RoomListComponent implements OnInit {
   }
 
 
-  setStep(index: number) {
-    this.step = index;
+  setActivePanel(index: number) {
+    this.activePanel = index;
   }
 
-  nextStep() {
-    this.step++;
+  nextPanel() {
+    this.activePanel++;
   }
 
-  prevStep() {
-    this.step--;
+  prevPanel() {
+    this.activePanel--;
   }
 }
