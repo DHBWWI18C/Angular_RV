@@ -43,7 +43,8 @@ export class LoginFormComponent implements OnInit {
           } else {
             this._snackBar.open('Login leider nicht erfolgreich', 'Ok', {
               duration: 2000,
-            });          }
+            });          
+          }
         }
       )
 
