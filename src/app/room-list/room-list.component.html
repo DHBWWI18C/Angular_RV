@@ -1,7 +1,7 @@
 <!-- FILTER-REGION -->
 <div class="container-fluid searchDiv">
   <mat-accordion class="headers-align">
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel [expanded]="activePanel === 1" (opened)="setActivePanel(1)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>Raumgröße</mat-panel-title>
         <mat-panel-description>
@@ -20,11 +20,11 @@
 
 
       <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Weiter</button>
+        <button mat-button color="primary" (click)="nextPanel()">Weiter</button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel [expanded]="activePanel === 2" (opened)="setActivePanel(2)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Beamer
@@ -45,12 +45,12 @@
       <p>Beamer-Value: {{ filters.beamer }}</p>
 
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Zurück</button>
-        <button mat-button color="primary" (click)="nextStep()">Weiter</button>
+        <button mat-button color="warn" (click)="prevPanel()">Zurück</button>
+        <button mat-button color="primary" (click)="nextPanel()">Weiter</button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel [expanded]="activePanel === 3" (opened)="setActivePanel(3)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Zeitraum
@@ -79,7 +79,7 @@
       <p>End-Value: {{ filters.endDate }}</p>
 
       <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Zurück</button>
+        <button mat-button color="warn" (click)="prevPanel()">Zurück</button>
         <button mat-button color="primary" (click)="filter()">Filtern</button>
       </mat-action-row>
     </mat-expansion-panel>
@@ -94,4 +94,4 @@
 <br>
 <!--For-each-Schleife für alle Räume-->
 
-<app-room-card *ngFor="let _room of rooms" [room]="_room"></app-room-card>
+<app-room-card *ngFor="let _room of rooms" [room]="_room" [showBookButton]="true"></app-room-card>

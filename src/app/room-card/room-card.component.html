@@ -4,7 +4,7 @@
     <mat-card-header>
         <mat-card-title> {{ room.title }}</mat-card-title>
         <!--TODO FALLS SUBTITLE ERWÜNSCHT WÄRE-->
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-subtitle># {{ room.id }}</mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image [src]="room.images[0]" alt="Raum-Foto">
@@ -28,10 +28,9 @@
         </ng-template>
         <div [ngSwitch]="room.size">
             Raumgröße:
-            <span class="badge badge-secondary" *ngSwitchCase="'SMALL'">Small</span>
-            <span class="badge badge-secondary" *ngSwitchCase="'MEDIUM'">Medium</span>
-            <span class="badge badge-secondary" *ngSwitchCase="'LARGE'">Large</span>
-            <span class="badge badge-secondary" *ngSwitchCase="'XLARGE'">Extra Large</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'klein'">Klein</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'mittel'">Mittel</span>
+            <span class="badge badge-secondary" *ngSwitchCase="'groß'">Groß</span>
             <span class="badge badge-secondary" *ngSwitchDefault>Raumgröße nicht definiert</span>
         </div>
         <div>
@@ -40,7 +39,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="bookRoom()">BUCHEN</button>
+        <button mat-button *ngIf="showBookButton" (click)="bookRoom()">BUCHEN</button>
     </mat-card-actions>
 </mat-card>
 

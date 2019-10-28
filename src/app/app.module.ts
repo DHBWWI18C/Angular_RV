@@ -12,6 +12,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatExpansionModule,
     MatCardModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [
     //Datumsfelder-Einstellung

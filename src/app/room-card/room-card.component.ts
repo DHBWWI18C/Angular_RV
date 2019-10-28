@@ -12,6 +12,8 @@ export class RoomCardComponent implements OnInit {
 
   @Input()
   room: Room;
+  @Input()
+  showBookButton: boolean;
 
   constructor(private router: Router) {
   }
