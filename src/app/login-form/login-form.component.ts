@@ -40,7 +40,7 @@ export class LoginFormComponent implements OnInit {
             this._snackBar.open('Login erfolgreich', 'Ok', {
               duration: 2000,
             });
-            this.userService.setUser(this.data.username);
+            this.userService.setUserInSession(this.data.username);
           } else {
             this._snackBar.open('Login leider nicht erfolgreich', 'Ok', {
               duration: 2000,
@@ -54,7 +54,7 @@ export class LoginFormComponent implements OnInit {
 
   }
 
-
+/*
   getPost() {
     console.log('hallo from login()');
     this.userService.getPost()
@@ -72,7 +72,7 @@ export class LoginFormComponent implements OnInit {
       );
 
   }
-
+*/
 
   setUserRole(role: string) {
     if (role === 'admin') {
