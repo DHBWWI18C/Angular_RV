@@ -17,9 +17,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 
-
-
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -43,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'user', component: CurrentUserComponent },
-  // { path: 'bookings', component: BookingComponent },
+  { path: 'bookings', component: BookingListComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
