@@ -79,14 +79,14 @@ export class RoomDetailComponent implements OnInit {
   //ChangeEvent
   updateStartDate(event) {
     this.booking.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    if (this.booking.endDate !== '') {  //TODO
+    if (this.booking.endDate != '') {  //TODO
       this.updatePrices();
     }
     this.updatePrices();
   }
   updateEndDate(event) {
     this.booking.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    if (this.booking.startDate !== '') {  //TODO
+    if (this.booking.startDate != '') {  //TODO
       this.updatePrices();
     }
   }
