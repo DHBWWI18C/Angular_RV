@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <img mat-card-image [src]="room.images[0]" alt="Raum-Foto">
-    
+
     <mat-card-content>
         <p>
             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
@@ -16,6 +16,7 @@
             bred for hunting.
             {{ room.description }}
         </p>
+
         <p *ngIf="room.beamerAvailable; else beamerNotAvailable">
             <!-- wird angezeigt, wenn Beamer verfügbar-->
             <span class="badge badge-info">Beamer verfügbar</span>
