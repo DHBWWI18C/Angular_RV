@@ -17,9 +17,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 
-
-
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -31,6 +28,8 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CurrentUserComponent } from './current-user/current-user.component';
 import { DatePipe } from '@angular/common';
+import { BookingComponent } from './booking/booking.component';
+import { BookingListComponent } from './booking-list/booking-list.component';
 //import { BookingComponent } from './bookings/booking.component';
 
 
@@ -41,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'user', component: CurrentUserComponent },
-  // { path: 'bookings', component: BookingComponent },
+  { path: 'bookings', component: BookingListComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -54,7 +53,9 @@ const appRoutes: Routes = [
     RoomListComponent,
     RoomDetailComponent,
     NotFoundComponent,
-    CurrentUserComponent
+    CurrentUserComponent,
+    BookingComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

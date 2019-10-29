@@ -17,18 +17,14 @@ export class RoomsService {
 
   constructor(private http: HttpClient) {
 
-  }/*
-  private rooms = ROOMS;
-
-  getRoom(id: string) : Room {
-    var _id = parseInt(id, 10);
-    if(isNaN(_id)){
-      return null;
-    }
-    const result = this.rooms.filter(room => room.id === _id)[0];
-    return result;
   }
-  */
+  
+  getRoom(id: number): Observable<any> {
+    let params = new HttpParams()
+      .set("id", id.toString());
+
+    return this.http.get(config.apiUrl + '/room', { params });
+  }
 
   getRoomsList(): Observable<any> {
     return this.http.get(config.apiUrl + '/rooms', {});
