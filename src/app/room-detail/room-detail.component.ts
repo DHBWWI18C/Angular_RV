@@ -50,14 +50,14 @@ export class RoomDetailComponent implements OnInit {
     private bookingService: BookingService,
     private route: ActivatedRoute,
     public datepipe: DatePipe
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({   //Hinzufügen von Validators, die erfüllt werden müssen,
       startDateCtl: ['', Validators.required],        //bevor der User weiter kommt
       endDateCtl: ['', Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({ 
+    this.secondFormGroup = this._formBuilder.group({
       agbCheckBoxCrl: ['', Validators.requiredTrue],
     });
 
@@ -72,21 +72,26 @@ export class RoomDetailComponent implements OnInit {
         }
       );
     */
-   this.booking.prices = this.getPrices_init();
-     
+    this.booking.prices = this.getPrices_init();
+
   }
 
   //ChangeEvent
-  updateStartDate(event){
+  updateStartDate(event) {
     this.booking.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
+    if (this.booking.endDate != '') {  //TODO
+      this.updatePrices();
+    }
     this.updatePrices();
   }
-  updateEndDate(event){
+  updateEndDate(event) {
     this.booking.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    this.updatePrices();
+    if (this.booking.startDate != '') {  //TODO
+      this.updatePrices();
+    }
   }
 
-  updatePrices(){
+  updatePrices() {
     this.bookingService.getPrices(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)
       .subscribe(
         (data: Prices) => {
@@ -94,16 +99,16 @@ export class RoomDetailComponent implements OnInit {
         }
       );
   }
-  updateWifi(){
+  updateWifi() {
     this.booking.wifi = !this.booking.wifi;
     this.updatePrices();
   }
-  updateFood(){
+  updateFood() {
     this.booking.food = !this.booking.food;
     this.updatePrices();
   }
 
-  bookRoom(){
+  bookRoom() {
     this.bookingService.create(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)
       .subscribe(
         (data: Booking) => { this.booking = data; }
@@ -112,18 +117,18 @@ export class RoomDetailComponent implements OnInit {
 
   }
 
-  getPrices_init() : Prices {
-     let _prices: Prices = {
-       priceSum: 200,
-       wifiPrice: 0,
-       foodPrice: 0,
-       roomPrice: 200
-     };
-     return _prices;
+  getPrices_init(): Prices {
+    let _prices: Prices = {
+      priceSum: 200,
+      wifiPrice: 0,
+      foodPrice: 0,
+      roomPrice: 200
+    };
+    return _prices;
   }
 
-  getRoomById(id): Room{
-    let room = ROOMS[id-1];
+  getRoomById(id): Room {
+    let room = ROOMS[id - 1];
     return room;
   }
 

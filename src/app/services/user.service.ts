@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 import { Router } from '@angular/router';
+import { User } from '../interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,25 @@ export class UserService {
   }
 
   logout(): Observable<any> {
+    this.deleteUserFromSession();
     return this.http.post(config.apiUrl + '/logout', {});
   }
 
   getCurrentUser(): Observable<any> {
     return this.http.get(config.apiUrl + '/user', {})
+  }
+
+  updateUser(user: User): Observable<any> {
+    let params = new HttpParams()
+      .set('userId', user.id.toString())
+      .set('firstName', user.firstName)
+      .set('secondName', user.secondName)
+      .set('mail', user.mail)
+      .set('password', user.password)
+      .set('username', user.userName)
+      .set('admin', '0');
+
+    return this.http.put(config.apiUrl + '/user', params)
   }
 
   proofUserAuth(): boolean{
@@ -39,16 +54,12 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  setUser(userName: string){
+  setUserInSession(userName: string){
     sessionStorage.setItem('userName', userName);
   }
 
+  deleteUserFromSession() {
+    sessionStorage.removeItem('userName');
+    }
 
-
-
-
-  //++++++++++
-  getPost(): Observable<any> {
-    return this.http.get('http://jsonplaceholder.typicode.com/posts/1', {});
-  }
 }

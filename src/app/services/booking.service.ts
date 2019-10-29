@@ -45,26 +45,27 @@ export class BookingService {
   getPrices(roomId: number, startDate: string, endDate: string, food: boolean, wifi: boolean): Observable<any> {
     let params = this.setParams(roomId.toString(), startDate, endDate, food, wifi);
 
-    return this.http.post(config.apiUrl + '/price', params);
+    return this.http.get(config.apiUrl + '/price', {params});
   }
 
   private setParams(roomId: string, startDate: string, endDate: string, food: boolean, wifi: boolean): HttpParams {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('roomId', roomId)
       .set('startDate', startDate)
       .set('endDate', endDate);
 
     if (food) {
-      params.set('food', '1');
+      params = params.set('food', '1');
     } else {
-      params.set('food', '0');
+      params = params.set('food', '0');
     }
     if (wifi) {
-      params.set('wifi', '1');
+      params = params.set('wifi', '1');
     } else {
-      params.set('wifi', '0');
+      params = params.set('wifi', '0');
     }
 
+    console.log(params);
     return params;
   }
 

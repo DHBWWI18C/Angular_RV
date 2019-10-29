@@ -36,7 +36,7 @@ export class RoomListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.userService.proofUserAuth();
+    //this.userService.proofUserAuth();
 
     this.roomSizes = SIZES;
   }
