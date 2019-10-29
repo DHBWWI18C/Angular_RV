@@ -2,71 +2,97 @@
 <div class="row">
   <div class="col-5">
     <app-room-card [room]="currentRoom" [showBookButton]="false">
-
     </app-room-card>
   </div>
   <div class="col-7">
+    <div class="row">
+      <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [editable]="!bookingCreated" [stepControl]="firstFormGroup">
+          <!--editable: zurück gehen erlauben-->
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Zeitraum wählen</ng-template>
+            <mat-form-field>
+              <input matInput (dateChange)="updateStartDate($event)" formControlName="startDateCtl" [min]="minDate"
+                [matDatepicker]="pickerStartDate" placeholder="Von" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+              <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+              <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+            </mat-form-field>
 
-    <mat-horizontal-stepper [linear]="true" #stepper>
-      <mat-step [editable]="!bookingCreated" [stepControl]="firstFormGroup">
-        <!--editable: zurück gehen erlauben-->
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Zeitraum wählen</ng-template>
-          <mat-form-field>
-            <input matInput formControlName="startDateCtl" [min]="minDate" [matDatepicker]="pickerStartDate"
-              placeholder="Von" required>
-            <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
-            <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
-            <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
-          </mat-form-field>
+            <mat-form-field id="pickerEndDate">
+              <input matInput (dateChange)="updateEndDate($event)" formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate"
+                placeholder="Bis" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate"
-              [value]="endDate" placeholder="Bis" required>
-            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
-          </mat-form-field>
-
-          <!--<p>Start-Value: {{ startdate.value }}</p>
-        <p>End-Value: {{ endDate }}</p>-->
-          <div>
-            <button mat-button matStepperNext>Weiter</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-          <!--<mat-step [editable]="false">
+            <p>Start-Value: {{ booking.startDate }}</p>
+            <p>End-Value: {{ booking.endDate }}</p>
+            <div>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <!--<mat-step [editable]="false">
         <form > -->
-          <ng-template matStepLabel>Weitere Sonderleistungen buchen</ng-template>
+            <ng-template matStepLabel>Sonderleistungen buchen</ng-template>
 
-          <br>
-          <mat-slide-toggle>Beamer hinzufügen</mat-slide-toggle>
-          <mat-slide-toggle>Verpflegung hinzufügen</mat-slide-toggle>
-          <br>
-          <section class="example-section">
-            <mat-checkbox [(ngModel)]="agbAccepted" name="orderButton" formControlName="agbCheckBoxCrl">
-              Ich habe die allgemeinen Geschäftsbedingungen gelesen und akzeptiere diese
-            </mat-checkbox>
-          </section>
+            <br>
+            <mat-slide-toggle (change)="updateWifi()">WiFi buchen</mat-slide-toggle>
+            <mat-slide-toggle (change)="updateFood()">Verpflegung buchen</mat-slide-toggle>
+            <br>
+            <br>
+            <section>
+              <mat-checkbox [(ngModel)]="agbAccepted" name="orderButton" formControlName="agbCheckBoxCrl">
+                Ich habe die allgemeinen Geschäftsbedingungen gelesen und akzeptiere diese
+              </mat-checkbox>
+            </section>
 
+            <div>
+              <button mat-button matStepperPrevious>Zurück</button>
+              <button mat-raised-button matStepperNext color="warn" [disabled]="!agbAccepted" (click)="bookRoom()">
+                Verbindlich buchen
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step (click)="bookRoom()">
+          <ng-template matStepLabel>Geschafft!</ng-template>
+          <h3>Vielen Dank!</h3>
+          <p>Wir sagen DANKE!</p>
+          <p>Ihre Buchungsnummer: {{ booking.id }}</p>
           <div>
-            <button mat-button matStepperPrevious>Zurück</button>
-            <button mat-raised-button matStepperNext color="warn" [disabled]="!agbAccepted" (click)="bookRoom()">
-              Verbindlich buchen
-            </button>
+            <!--<button mat-button matStepperPrevious>Back</button>-->
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <!--TODO reset vllt in Suche noch einbauen-->
           </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Geschafft!</ng-template>
-        You are now done.
-        <div>
-          <!--<button mat-button matStepperPrevious>Back</button>-->
-          <button mat-button (click)="stepper.reset()">Reset</button>
-          <!--TODO reset vllt in Suche noch einbauen-->
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <div class="row">
+      <mat-card>
+        <mat-card-title>Preisübersicht</mat-card-title>
+        <span>WiFi-Preis</span>
+        <span class="price"> {{ booking.prices.wifiPrice | currency: 'EUR' }} </span>
+        <br>
+        <mat-divider></mat-divider>
+        <span>Verpflegung</span>
+        <span class="price"> {{ booking.prices.foodPrice | currency: 'EUR' }} </span>
+        <mat-divider></mat-divider>
+        <br>
+        <span>Raum-Preis</span>
+        <span class="price"> {{ booking.prices.roomPrice | currency: 'EUR' }} </span>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <span>Gesamtpreis</span>
+        <span class="price"> {{ booking.prices.priceSum | currency: 'EUR' }} </span>
+      </mat-card>
+
+    </div>
   </div>
+
 </div>

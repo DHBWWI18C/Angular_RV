@@ -13,6 +13,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+
+
+
 
 import 'hammerjs';
 
@@ -24,6 +30,7 @@ import { RoomListComponent } from './room-list/room-list.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CurrentUserComponent } from './current-user/current-user.component';
+import { DatePipe } from '@angular/common';
 //import { BookingComponent } from './bookings/booking.component';
 
 
@@ -34,7 +41,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'user', component: CurrentUserComponent },
- // { path: 'bookings', component: BookingComponent },
+  // { path: 'bookings', component: BookingComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -71,10 +78,13 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatCardModule,
     MatStepperModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatListModule,
+    MatChipsModule
   ],
   providers: [
-    //Datumsfelder-Einstellung
+    DatePipe,
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
   ],
   bootstrap: [AppComponent, LoginFormComponent, RegisterFormComponent, RoomDetailComponent]

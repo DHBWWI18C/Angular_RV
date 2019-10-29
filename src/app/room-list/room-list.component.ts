@@ -6,6 +6,7 @@ import { Size } from '../interfaces/Size';
 import { RoomsService } from '../services/rooms.service';
 import { Room } from '../interfaces/Room';
 import { FormControl } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -29,9 +30,14 @@ export class RoomListComponent implements OnInit {
   minDate = new Date();
   activePanel = 0; //Filter-Panels 
 
-  constructor(private roomService: RoomsService) { }
+  constructor(
+    private roomService: RoomsService,
+    private userService: UserService
+    ) { }
 
   ngOnInit() {
+    this.userService.proofUserAuth();
+
     this.roomSizes = SIZES;
   }
 
