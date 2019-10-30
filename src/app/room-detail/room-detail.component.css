@@ -5,3 +5,15 @@
 #pickerEndDate {
     margin-left: 20px;
 }
+
+.matlistitem {
+    background-color: yellowgreen;
+}
+
+.matlist {
+    width: 45%;
+}
+
+.listPrice {
+    flex: 1 1 auto;
+}

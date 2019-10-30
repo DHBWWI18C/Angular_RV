@@ -48,31 +48,38 @@ export class RoomDetailComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private bookingService: BookingService,
+    private roomService: RoomsService,
     private route: ActivatedRoute,
-    public datepipe: DatePipe
+    private datepipe: DatePipe
   ) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({   //Hinzufügen von Validators, die erfüllt werden müssen,
-      startDateCtl: ['', Validators.required],        //bevor der User weiter kommt
+    //Hinzufügen von Validators, die erfüllt werden müssen, bevor der User weiter gehen kann
+    this.firstFormGroup = this._formBuilder.group({   
+      startDateCtl: ['', Validators.required],        
       endDateCtl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       agbCheckBoxCrl: ['', Validators.requiredTrue],
     });
 
-    this.currentRoom = this.getRoomById(this.route.snapshot.paramMap.get("id"));
+    //this.currentRoom = this.getRoomById(this.route.snapshot.paramMap.get("id"));
+    this.roomService.getRoom(this.route.snapshot.paramMap.get("id"))
+      .subscribe(
+        (data: Room) => {
+          this.currentRoom = data;
+        }
+      )
 
-    //Aufruf für einen Tag, bevor der User Datum gewählt hat
-    /*
+    //Aufruf für einen Tag, bevor der User ein Datum gewählt hat
     this.bookingService.getPrices(this.currentRoom.id, '01.01.2000', '01.01.2000', false, false)
       .subscribe(
         (data: Prices) => {
           this.booking.prices = data;
         }
       );
-    */
-    this.booking.prices = this.getPrices_init();
+    
+    //this.booking.prices = this.getPrices_init();
 
   }
 
@@ -82,7 +89,6 @@ export class RoomDetailComponent implements OnInit {
     if (this.booking.endDate != '') {  //TODO
       this.updatePrices();
     }
-    this.updatePrices();
   }
   updateEndDate(event) {
     this.booking.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');

@@ -19,9 +19,9 @@ export class RoomsService {
 
   }
   
-  getRoom(id: number): Observable<any> {
+  getRoom(id: string): Observable<any> {
     let params = new HttpParams()
-      .set("id", id.toString());
+      .set("id", id);
 
     return this.http.get(config.apiUrl + '/room', { params });
   }
@@ -30,7 +30,7 @@ export class RoomsService {
     return this.http.get(config.apiUrl + '/rooms', {});
   }
 
-  getRooms(roomSize?: string, beamerAvailable?: string, startDate?: string, endDate?: string): Observable<any> {
+  getRoomsFiltered(roomSize?: string, beamerAvailable?: string, startDate?: string, endDate?: string): Observable<any> {
 
     const params = new HttpParams()
 

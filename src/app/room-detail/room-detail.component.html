@@ -1,7 +1,7 @@
 <h1 class="h3 mb-3 font-weight-normal">Raum buchen</h1>
 <div class="row">
   <div class="col-5">
-    <app-room-card [room]="currentRoom" [showBookButton]="false">
+    <app-room-card [room]="currentRoom" [showBookButton]="false" [showBody]="true">
     </app-room-card>
   </div>
   <div class="col-7">
@@ -20,8 +20,8 @@
             </mat-form-field>
 
             <mat-form-field id="pickerEndDate">
-              <input matInput (dateChange)="updateEndDate($event)" formControlName="endDateCtl" [min]="minDate" [matDatepicker]="pickerEndDate"
-                placeholder="Bis" required>
+              <input matInput (dateChange)="updateEndDate($event)" formControlName="endDateCtl" [min]="minDate"
+                [matDatepicker]="pickerEndDate" placeholder="Bis" required>
               <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
               <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
             </mat-form-field>
@@ -72,6 +72,7 @@
       </mat-horizontal-stepper>
     </div>
     <div class="row">
+      <!--
       <mat-card>
         <mat-card-title>Preisübersicht</mat-card-title>
         <span>WiFi-Preis</span>
@@ -91,7 +92,11 @@
         <span>Gesamtpreis</span>
         <span class="price"> {{ booking.prices.priceSum | currency: 'EUR' }} </span>
       </mat-card>
-
+      -->
+      <app-price-list
+        [prices]="booking.prices"
+      >
+      </app-price-list>
     </div>
   </div>
 

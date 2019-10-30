@@ -1,0 +1,43 @@
+<mat-list class="matlist">
+        <mat-list-item>
+          <mat-icon matListIcon>room</mat-icon>
+          <h3 matLine>Raum-Preis</h3>
+          <p matLine>
+            <span>lalala2</span>
+          </p>
+          <p>
+            <span class="listPrice"> {{ prices.roomPrice | currency: 'EUR' }} </span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>signal_wifi_4_bar</mat-icon>
+          <h3 matLine>WiFi</h3>
+          <p matLine>
+            <span>lalala2</span>
+          </p>
+          <p>
+            <span class="listPrice"> {{ prices.wifiPrice | currency: 'EUR' }} </span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>fastfood</mat-icon>
+          <h3 matLine>Verpflegung</h3>
+          <p matLine>
+            <span>lalala2</span>
+          </p>
+          <p>
+            <span class="listPrice"> {{ prices.foodPrice | currency: 'EUR' }} </span>
+          </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon matListIcon>euro</mat-icon>
+          <h3 matLine>Gesamtpreis</h3>
+          <p matLine>
+            <span>(inkl. Mehrwertsteuer)</span>
+          </p>
+          <p>
+            <span class="listPrice"> {{ prices.priceSum | currency: 'EUR' }} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
