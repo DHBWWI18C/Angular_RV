@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/Post';
 import { MatSnackBar } from '@angular/material';
 import { AuthenticationService } from '../services/authentication.service';
+import {Token} from '../interfaces/Token';
 
 @Component({
   selector: 'app-login-form',
@@ -33,12 +34,12 @@ export class LoginFormComponent implements OnInit {
   login() {
     this.userService.login(this.data.username, this.data.password)
       .subscribe(
-        (token: string) => {
-          if (token != null) {
+        (result: Token) => {
+          if (result != null) {
             this.snackBar.open('Login erfolgreich', 'Ok', {
               duration: 2000,
             });
-            this.authService.setUserInSession(token);
+            this.authService.setUserInSession(result.token);
           } else {
             this.snackBar.open('Login leider nicht erfolgreich', 'Ok', {
               duration: 2000,

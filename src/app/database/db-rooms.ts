@@ -1,6 +1,7 @@
 import { Room } from '../interfaces/Room';
 
-export const ROOMS: Room[] = [
+export const ROOMS: Room[] = null;
+/*
     {
         id: 1,
         title: 'Room #1',
@@ -29,3 +30,5 @@ export const ROOMS: Room[] = [
         images: ['./assets/room3_1.jpg', './assets/room3_2.jpg', './assets/room3_3.jpg']
     }
 ];
+
+*/

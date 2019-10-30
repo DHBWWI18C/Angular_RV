@@ -1,9 +1,11 @@
+import {Size} from './Size';
+
 export interface Room{
     id: number;
-    title: string;
-    description: string;
-    size: string;
+    name: string;
+    info: string;
+    size: Size;
     beamerAvailable: boolean;
     price: number;
-    images: string[];
+    picturePath: string;
 }

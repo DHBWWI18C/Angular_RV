@@ -2,19 +2,19 @@
 
 <mat-card class="card" (dblclick)="bookRoom()">
     <mat-card-header>
-        <mat-card-title> {{ room.title }}</mat-card-title>
+        <mat-card-title> {{ room.name }}</mat-card-title>
         <!--TODO FALLS SUBTITLE ERWÜNSCHT WÄRE-->
         <mat-card-subtitle># {{ room.id }}</mat-card-subtitle>
     </mat-card-header>
 
-    <img mat-card-image [src]="room.images[0]" alt="Raum-Foto">
+    <img mat-card-image [src]="room.picturePath" alt="Raum-Foto">
 
     <mat-card-content *ngIf="showBody">
         <p>
             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
             A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
             bred for hunting.
-            {{ room.description }}
+            {{ room.info }}
         </p>
 
         <div *ngIf="room.beamerAvailable; else beamerNotAvailable">
@@ -25,7 +25,7 @@
             <!-- wird angezeigt, wenn Beamer nicht verfügbar-->
             <span class="badge badge-secondary">Kein Beamer verfügbar</span>
         </ng-template>
-        <div [ngSwitch]="room.size">
+        <div [ngSwitch]="room.size.title">
             <span class="badge badge-secondary" *ngSwitchCase="'klein'">Klein</span>
             <span class="badge badge-secondary" *ngSwitchCase="'mittel'">Mittel</span>
             <span class="badge badge-secondary" *ngSwitchCase="'groß'">Groß</span>

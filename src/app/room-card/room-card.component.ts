@@ -23,7 +23,7 @@ export class RoomCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  bookRoom(){
-    this.router.navigate(['/room/' + this.room.id])
+  bookRoom() {
+    this.router.navigate(['/room/' + this.room.id]);
   }
 }

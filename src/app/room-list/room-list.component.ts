@@ -56,7 +56,7 @@ export class RoomListComponent implements OnInit {
   }
 
   filter() {
-    this.activePanel = 0;  //schließt Panel -> 'step' definiert offenes '<mat-expansion-panel>'-Element
+    this.activePanel = 0;  // schließt Panel -> 'step' definiert offenes '<mat-expansion-panel>'-Element
 
     this.roomService.getRoomsFiltered(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
       .subscribe(
