@@ -30,6 +30,7 @@ import { CurrentUserComponent } from './current-user/current-user.component';
 import { DatePipe } from '@angular/common';
 import { BookingComponent } from './booking/booking.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
+import { PriceListComponent } from './price-list/price-list.component';
 //import { BookingComponent } from './bookings/booking.component';
 
 
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'user', component: CurrentUserComponent },
-  { path: 'bookings', component: BookingListComponent },
+  { path: 'bookings', component: BookingComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     CurrentUserComponent,
     BookingComponent,
-    BookingListComponent
+    BookingListComponent,
+    PriceListComponent
   ],
   imports: [
     BrowserModule,

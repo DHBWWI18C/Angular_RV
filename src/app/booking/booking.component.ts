@@ -3,6 +3,7 @@ import { Booking } from '../interfaces/Booking';
 import { BookingService } from '../services/booking.service';
 import { Room } from '../interfaces/Room';
 import { RoomsService } from '../services/rooms.service';
+import { ROOMS } from '../database/db-rooms';
 
 @Component({
   selector: 'app-booking',
@@ -15,6 +16,8 @@ export class BookingComponent implements OnInit {
   booking: Booking;
 
   room: Room;
+  panelOpenState = false;
+  currentRoom: Room;
 
 
   constructor(
@@ -22,8 +25,16 @@ export class BookingComponent implements OnInit {
     private roomService: RoomsService
   ) { }
 
-  ngOnInit() {
-    this.roomService.getRoom(this.booking.roomId);
+  ngOnInit() { 
+    this.currentRoom = ROOMS[1];
+    /*
+    this.roomService.getRoom(this.booking.roomId)
+      .subscribe(
+        (data: Room) => {
+          this.room = data;
+        }
+      )
+      */
   }
 
 }

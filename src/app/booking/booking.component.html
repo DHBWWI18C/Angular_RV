@@ -1,1 +1,19 @@
-<p>works</p>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            This is the expansion title
+        </mat-panel-title>
+        <mat-panel-description>
+            BLAbla
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <a routerLink="/room/{{booking.roomId}}">
+        <app-room-card [room]="currentRoom" [showBookButton]="false" [showBody]="false">
+        </app-room-card>
+    </a>
+    <app-price-list
+        [prices]="booking.prices"
+    >
+    </app-price-list>
+    <p>Buchungsnummer: #04343</p>
+</mat-expansion-panel>

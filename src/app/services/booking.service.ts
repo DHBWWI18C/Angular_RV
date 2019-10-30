@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
-
+import * as config from '../CONFIG'; //Konfig-Datei wird geladen (CONFIG.ts)
+import { AuthenticationService } from './authentication.service';
 
 
 @Injectable({
@@ -10,7 +10,10 @@ import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 })
 export class BookingService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private authService: AuthenticationService,
+    private http: HttpClient
+  ) { }
 
   getList(): Observable<any> {
     return this.http.get(config.apiUrl + '/bookings');
@@ -18,20 +21,23 @@ export class BookingService {
 
   getById(id: string): Observable<any> {
     const params = new HttpParams()
-      .set('id', id);
+      .set('id', id)
+      .set('token', this.authService.getSessionToken());
 
     return this.http.get(config.apiUrl + '/bookings', { params });
   }
 
   DeleteById(id: string): Observable<any> {
     const params = new HttpParams()
-      .set('id', id);
+      .set('id', id)
+      .set('token', this.authService.getSessionToken());
 
     return this.http.delete(config.apiUrl + '/bookings', { params });
   }
 
   create(roomId: number, startDate: string, endDate: string, food: boolean, wifi: boolean): Observable<any> {
-    let params = this.setParams(roomId.toString(), startDate, endDate, food, wifi);
+    let params = this.setParams(roomId.toString(), startDate, endDate, food, wifi)
+      .set('token', this.authService.getSessionToken());
 
     return this.http.post(config.apiUrl + '/booking', params);
   }
@@ -45,7 +51,7 @@ export class BookingService {
   getPrices(roomId: number, startDate: string, endDate: string, food: boolean, wifi: boolean): Observable<any> {
     let params = this.setParams(roomId.toString(), startDate, endDate, food, wifi);
 
-    return this.http.get(config.apiUrl + '/price', {params});
+    return this.http.get(config.apiUrl + '/price', { params });
   }
 
   private setParams(roomId: string, startDate: string, endDate: string, food: boolean, wifi: boolean): HttpParams {

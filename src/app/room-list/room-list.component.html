@@ -62,20 +62,20 @@
       </mat-expansion-panel-header>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Von" required>
+        <input matInput (dateChange)="updateStartDate($event)" [min]="minDate" [matDatepicker]="pickerStartDate" placeholder="Von" required>
         <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
         <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
         <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [matDatepicker]="pickerEndDate" [value]="filters.endDate"
+        <input matInput (dateChange)="updateEndDate($event)" [min]="minDate" [matDatepicker]="pickerEndDate"
           (input)="filters.endDate = $event.target.value" placeholder="Bis">
         <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
       </mat-form-field>
 
-      <p>Start-Value: {{ startdate.value }}</p>
+      <p>Start-Value: {{ filters.startDate }}</p>
       <p>End-Value: {{ filters.endDate }}</p>
 
       <mat-action-row>
@@ -94,4 +94,4 @@
 <br>
 <!--For-each-Schleife für alle Räume-->
 
-<app-room-card *ngFor="let _room of rooms" [room]="_room" [showBookButton]="true"></app-room-card>
+<app-room-card *ngFor="let _room of rooms" [room]="_room" [showBookButton]="true" [showBody]="true"></app-room-card>

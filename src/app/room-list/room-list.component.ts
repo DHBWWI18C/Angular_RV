@@ -6,7 +6,8 @@ import { Size } from '../interfaces/Size';
 import { RoomsService } from '../services/rooms.service';
 import { Room } from '../interfaces/Room';
 import { FormControl } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { DatePipe } from '@angular/common';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -18,8 +19,8 @@ export class RoomListComponent implements OnInit {
   startdate = new FormControl(new Date());
 
   roomSizes: Size[];
-  rooms: Room[] = ROOMS;
-  
+  rooms: Room[];
+
   filters = {
     roomSize: '',
     beamer: '',
@@ -32,13 +33,17 @@ export class RoomListComponent implements OnInit {
 
   constructor(
     private roomService: RoomsService,
-    private userService: UserService
-    ) { }
+    private authService: AuthenticationService,
+    private datepipe: DatePipe
+  ) { }
 
   ngOnInit() {
-    //this.userService.proofUserAuth();
+    this.authService.proofUserAuth();
 
     this.roomSizes = SIZES;
+    //this.rooms = ROOMS;
+    this.getRoomsList();
+
   }
 
   getRoomsList() {
@@ -51,9 +56,9 @@ export class RoomListComponent implements OnInit {
   }
 
   filter() {
-    this.activePanel = 0;  //'step' definiert offenes '<mat-expansion-panel>'-Element
+    this.activePanel = 0;  //schließt Panel -> 'step' definiert offenes '<mat-expansion-panel>'-Element
 
-    this.roomService.getRooms(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
+    this.roomService.getRoomsFiltered(this.filters.roomSize, this.filters.beamer, this.filters.startDate, this.filters.endDate)
       .subscribe(
         (result: Room[]) => {
           this.rooms = result;
@@ -72,5 +77,13 @@ export class RoomListComponent implements OnInit {
 
   prevPanel() {
     this.activePanel--;
+  }
+
+  //ChangeEvent
+  updateStartDate(event) {
+    this.filters.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
+  }
+  updateEndDate(event) {
+    this.filters.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
   }
 }

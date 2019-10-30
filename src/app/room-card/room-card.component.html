@@ -9,7 +9,7 @@
 
     <img mat-card-image [src]="room.images[0]" alt="Raum-Foto">
 
-    <mat-card-content>
+    <mat-card-content *ngIf="showBody">
         <p>
             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
             A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
@@ -17,25 +17,21 @@
             {{ room.description }}
         </p>
 
-        <p *ngIf="room.beamerAvailable; else beamerNotAvailable">
+        <div *ngIf="room.beamerAvailable; else beamerNotAvailable">
             <!-- wird angezeigt, wenn Beamer verfügbar-->
             <span class="badge badge-info">Beamer verfügbar</span>
-        </p>
+        </div>
         <ng-template #beamerNotAvailable>
             <!-- wird angezeigt, wenn Beamer nicht verfügbar-->
-            <p>
-                <span class="badge badge-secondary">Kein Beamer verfügbar</span>
-            </p>
+            <span class="badge badge-secondary">Kein Beamer verfügbar</span>
         </ng-template>
         <div [ngSwitch]="room.size">
-            Raumgröße:
             <span class="badge badge-secondary" *ngSwitchCase="'klein'">Klein</span>
             <span class="badge badge-secondary" *ngSwitchCase="'mittel'">Mittel</span>
             <span class="badge badge-secondary" *ngSwitchCase="'groß'">Groß</span>
             <span class="badge badge-secondary" *ngSwitchDefault>Raumgröße nicht definiert</span>
         </div>
         <div>
-            Preis:
             <span class="badge badge-warning">{{ room.price | currency: 'EUR' }}</span>
         </div>
     </mat-card-content>
