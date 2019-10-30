@@ -115,7 +115,8 @@ export class RoomDetailComponent implements OnInit {
   }
 
   bookRoom() {
-    this.bookingService.create(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)
+    console.log("hallo");
+    this.bookingService.create(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi, this.booking.prices.priceSum)
       .subscribe(
         (data: Booking) => { this.booking = data; }
       )

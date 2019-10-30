@@ -4,7 +4,7 @@ export interface Room{
     id: number;
     name: string;
     info: string;
-    size: Size;
+    roomsize: Size;
     beamerAvailable: boolean;
     price: number;
     picturePath: string;

@@ -35,8 +35,9 @@ export class BookingService {
     return this.http.delete(config.apiUrl + '/bookings', { params });
   }
 
-  create(roomId: number, startDate: string, endDate: string, food: boolean, wifi: boolean): Observable<any> {
+  create(roomId: number, startDate: string, endDate: string, food: boolean, wifi: boolean, price: number): Observable<any> {
     let params = this.setParams(roomId.toString(), startDate, endDate, food, wifi)
+        .set('price', price.toString())
       .set('token', this.authService.getSessionToken());
 
     return this.http.post(config.apiUrl + '/booking', params);

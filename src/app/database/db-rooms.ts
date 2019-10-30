@@ -8,7 +8,7 @@ export const ROOMS: Room[] = null;
         description: 'This is the first room',
         beamerAvailable: true,
         price: 200,
-        size: 'MEDIUM',
+        roomsize: 'MEDIUM',
         images: ['./assets/room1_1.jpg', './assets/room1_2.jpg', './assets/room1_3.jpg']
     },
     {
@@ -17,7 +17,7 @@ export const ROOMS: Room[] = null;
         description: 'This is the 2. room',
         beamerAvailable: false,
         price: 200,
-        size: 'LARGE',
+        roomsize: 'LARGE',
         images: ['./assets/room2_1.jpg', './assets/room2_2.jpg', './assets/room2_3.jpg']
     },
     {
@@ -26,7 +26,7 @@ export const ROOMS: Room[] = null;
         description: 'This is the 3. room',
         beamerAvailable: true,
         price: 200,
-        size: 'EXTRA LARGE',
+        roomsize: 'EXTRA LARGE',
         images: ['./assets/room3_1.jpg', './assets/room3_2.jpg', './assets/room3_3.jpg']
     }
 ];

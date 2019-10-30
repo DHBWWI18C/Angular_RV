@@ -32,20 +32,23 @@ export class RoomsService {
 
   getRoomsFiltered(roomSize?: string, beamerAvailable?: string, startDate?: string, endDate?: string): Observable<any> {
 
-    const params = new HttpParams()
+    let params = new HttpParams();
 
-    if (roomSize !== null) {
-      params.set('roomSize', String(this.getRoomSizeId(roomSize)));
+    if (roomSize != null || roomSize !== '') {
+      const id = this.getRoomSizeId(roomSize);
+      if (id != null) {
+        params = params.set('roomSize', id.toString());
+      }
     }
 
     if (beamerAvailable !== null)
-      params.set('beamerAvailable', beamerAvailable);
+      params = params.set('beamerAvailable', beamerAvailable);
 
-    if (startDate !== null || startDate === "")
-      params.set('startDate', startDate);
+    if (startDate !== null && startDate !== '')
+      params = params.set('startDate', startDate);
 
-    if (endDate !== null || endDate === "")
-      params.set('endDate', endDate);
+    if (endDate !== null && endDate !== '')
+      params = params.set('endDate', endDate);
 
 
     return this.http.get(config.apiUrl + '/rooms', { params });

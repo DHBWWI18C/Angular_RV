@@ -53,7 +53,7 @@ export class UserService {
       .set('secondName', user.secondName)
       .set('mail', user.mail)
       .set('password', user.password)
-      .set('username', user.userName)
+      .set('userName', user.userName)
       .set('admin', '0')
       .set('token', this.authService.getSessionToken());
 

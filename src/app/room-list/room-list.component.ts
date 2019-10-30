@@ -51,6 +51,7 @@ export class RoomListComponent implements OnInit {
       .subscribe(
         (result: Room[]) => {
           this.rooms = result;
+          console.log(this.rooms);
         }
       );
   }

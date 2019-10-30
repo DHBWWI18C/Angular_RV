@@ -4,32 +4,32 @@
         <div>
             <mat-form-field appearance="outline" >
                 <mat-label>Benutzername</mat-label>
-                <input matInput (input)="user.userName = $event.target.value" [disabled]="!editUser" placeholder="badman88" required> 
+                <input matInput (input)="user.userName = $event.target.value" [disabled]="!editUser" placeholder="badman88" required [value]="user.userName">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>E-Mail</mat-label>
                 <!-- [disabled] PLATZHALTER FÜR ADMIN-CONTROL-->
-                <input matInput (input)="user.mail = $event.target.value" [disabled]="!editUser" placeholder="max@mustermann.de" required>
+                <input matInput (input)="user.mail = $event.target.value" [disabled]="!editUser" placeholder="max@mustermann.de" required [value]="user.mail">
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Vorname</mat-label>
-                <input matInput (input)="user.firstName = $event.target.value" [disabled]="!editUser" placeholder="Max" required>
+                <input matInput (input)="user.firstName = $event.target.value" [disabled]="!editUser" placeholder="Max" required [value]="user.firstName">
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Nachname</mat-label>
-                <input matInput (input)="user.secondName = $event.target.value" [disabled]="!editUser" placeholder="Mustermann" required>
+                <input matInput (input)="user.secondName = $event.target.value" [disabled]="!editUser" placeholder="Mustermann" required [value]="user.secondName">
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Passwort</mat-label>
-                <input type="password" matInput (input)="user.password = $event.target.value" [disabled]="!editUser" placeholder="#Iambad88" required>
+                <input type="password" matInput (input)="user.password = $event.target.value" [disabled]="!editUser" placeholder="#Iambad88" required [value]="user.password">
                 <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
 

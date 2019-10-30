@@ -14,7 +14,9 @@ export class LoginFormComponent implements OnInit {
 
   showErrorBanner: boolean = false;
 
-  test: Post;
+  test2: string;
+  test3: boolean;
+
 
   data = {
     username: '',
@@ -40,6 +42,7 @@ export class LoginFormComponent implements OnInit {
               duration: 2000,
             });
             this.authService.setUserInSession(result.token);
+            this.test3 = this.authService.isLoggedIn();
           } else {
             this.snackBar.open('Login leider nicht erfolgreich', 'Ok', {
               duration: 2000,

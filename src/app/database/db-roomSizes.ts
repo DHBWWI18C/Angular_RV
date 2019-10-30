@@ -8,14 +8,14 @@ export const SIZES: Size[] = [
     },
     {
         id: 1,
-        title: "Klein"
+        title: "klein"
     },
     {
         id: 2,
-        title: "Mittel"
+        title: "mittel"
     },
     {
         id: 3,
-        title: "Groß"
+        title: "groß"
     }
 ]

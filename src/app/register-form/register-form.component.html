@@ -3,31 +3,31 @@
     <h1 class="h3 mb-3 font-weight-normal">Benutzer anlegen</h1>
       <mat-form-field appearance="outline">
         <mat-label>Benutzername</mat-label>
-        <input matInput placeholder="badman88" required>
+        <input matInput (input)="data.username = $event.target.value" placeholder="badman88" required>
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>E-Mail</mat-label>
-        <input matInput placeholder="max@mustermann.de" required>
+        <input matInput (input)="data.email = $event.target.value" placeholder="max@mustermann.de" required>
         <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Vorname</mat-label>
-        <input matInput placeholder="Max" required>
+        <input matInput (input)="data.firstName = $event.target.value" placeholder="Max" required>
         <mat-icon matSuffix>account_box</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Nachname</mat-label>
-        <input matInput placeholder="Mustermann" required>
+        <input matInput (input)="data.lastName = $event.target.value" placeholder="Mustermann" required>
         <mat-icon matSuffix>account_box</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Passwort</mat-label>
-        <input type="password" matInput placeholder="#Iambad88" required>
+        <input type="password" matInput (input)="data.password = $event.target.value" placeholder="#Iambad88" required>
         <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
       <br>
