@@ -28,7 +28,9 @@ export class RoomListComponent implements OnInit {
     endDate: ''
   };
 
-  minDate = new Date();
+  minDateStart = new Date();
+  minDateEnd = new Date();
+
   activePanel = 0; //Filter-Panels 
 
   constructor(
@@ -38,11 +40,11 @@ export class RoomListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.proofUserAuth();
+    //this.authService.proofUserAuth();
 
     this.roomSizes = SIZES;
-    //this.rooms = ROOMS;
-    this.getRoomsList();
+    this.rooms = ROOMS;
+    //this.getRoomsList();
 
   }
 
@@ -83,6 +85,7 @@ export class RoomListComponent implements OnInit {
   //ChangeEvent
   updateStartDate(event) {
     this.filters.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
+    this.minDateEnd = new Date(this.filters.startDate);
   }
   updateEndDate(event) {
     this.filters.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');

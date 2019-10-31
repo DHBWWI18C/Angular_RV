@@ -4,3 +4,6 @@
 - Responsive Design
 - Logout-Button/Funktion
 - Liste von Buchungen
+
+<button mat-button (click)="stepper.reset()">Reset</button>
+<!--TODO reset vllt in Suche noch einbauen-->

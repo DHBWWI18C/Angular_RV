@@ -3,6 +3,8 @@ import { Booking } from '../interfaces/Booking';
 import { Room } from '../interfaces/Room';
 import { RoomsService } from '../services/rooms.service';
 import { NgListItem } from '../interfaces/NgListItem';
+import { Prices } from '../interfaces/Prices';
+import { BookingService } from '../services/booking.service';
 
 @Component({
   selector: 'app-booking',
@@ -17,8 +19,10 @@ export class BookingComponent implements OnInit {
   currentRoom: Room;
   listItems: NgListItem[];
   panelOpen: boolean = false;
+  prices: Prices;
 
   constructor(
+    private bookingService: BookingService,
     private roomService: RoomsService
   ) { }
 
@@ -54,6 +58,16 @@ export class BookingComponent implements OnInit {
         value: this.booking.id.toString()
       }
     ]
+  }
+
+
+  getPrices() {
+    this.bookingService.getPrices(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)
+      .subscribe(
+        (data: Prices) => {
+          this.prices = data;
+        }
+      );
   }
 
 }
