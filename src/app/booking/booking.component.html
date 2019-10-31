@@ -1,4 +1,35 @@
 <mat-expansion-panel (opened)="panelOpen = !panelOpen" (closed)="panelOpen = !panelOpen" class="panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ booking.room.name }} (Buchung #{{ booking.id }})
+            </mat-panel-title>
+            <mat-panel-description *ngIf="!panelOpen">
+                {{ booking.startDate }} - {{ booking.endDate }}
+            </mat-panel-description>
+            <mat-panel-description *ngIf="!panelOpen">
+                {{ booking.price | currency: 'EUR' }}
+            </mat-panel-description>
+    
+        </mat-expansion-panel-header>
+    
+        <mat-grid-list cols="2" rowHeight="400px">
+            <mat-grid-tile>
+                <app-price-list [prices]="prices" [additionalItems]="listItems">
+                </app-price-list>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <a routerLink="/room/{{booking.roomId}}">
+                    <app-room-card [room]="currentRoom" [showBookButton]="false" [showBody]="false">
+                    </app-room-card>
+                </a>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-expansion-panel>
+
+
+
+<!--
+<mat-expansion-panel (opened)="panelOpen = !panelOpen" (closed)="panelOpen = !panelOpen" class="panel">
     <mat-expansion-panel-header>
         <mat-panel-title>
             {{ currentRoom.name }} (Buchung #{{ booking.id }})
@@ -25,3 +56,4 @@
         </mat-grid-tile>
     </mat-grid-list>
 </mat-expansion-panel>
+-->

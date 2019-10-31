@@ -24,8 +24,8 @@ export class RoomDetailComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  endDate = new Date();
-  minDate = new Date();
+  minDateEnd = new Date();
+  minDateStart = new Date();
 
   currentRoom: Room;
   roomAvailable: boolean = false;
@@ -105,6 +105,7 @@ export class RoomDetailComponent implements OnInit {
     if (this.booking.endDate != '') {  //TODO
       this.updatePrices();
       this.checkRoomAvailable();
+      this.minDateEnd = new Date(this.booking.startDate);
     }
   }
   updateEndDate(event) {

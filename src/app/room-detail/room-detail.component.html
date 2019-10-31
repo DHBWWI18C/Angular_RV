@@ -12,7 +12,7 @@
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Zeitraum wählen</ng-template>
             <mat-form-field>
-              <input matInput (dateChange)="updateStartDate($event)" formControlName="startDateCtl" [min]="minDate"
+              <input matInput (dateChange)="updateStartDate($event)" formControlName="startDateCtl" [min]="minDateStart"
                 [matDatepicker]="pickerStartDate" placeholder="Von" required>
               <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
               <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
@@ -25,11 +25,8 @@
               <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
               <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
             </mat-form-field>
-
-            <p>Start-Value: {{ booking.startDate }}</p>
-            <p>End-Value: {{ booking.endDate }}</p>
             <div>
-              <button mat-button matStepperNext [disabled]="!roomAvailable">Weiter</button>
+              <button mat-button matStepperNext color="accent" [disabled]="!roomAvailable">Weiter</button>
             </div>
           </form>
         </mat-step>
@@ -61,11 +58,6 @@
           <h3>Vielen Dank!</h3>
           <p>Wir sagen DANKE!</p>
           <p>Ihre Buchungsnummer: {{ booking.id }}</p>
-          <div>
-            <!--<button mat-button matStepperPrevious>Back</button>-->
-            <button mat-button (click)="stepper.reset()">Reset</button>
-            <!--TODO reset vllt in Suche noch einbauen-->
-          </div>
         </mat-step>
       </mat-horizontal-stepper>
     </div>
