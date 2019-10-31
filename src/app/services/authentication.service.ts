@@ -17,7 +17,7 @@ export class AuthenticationService {
   // **********************+***************
 
   proofUserAuth(): boolean {
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn()) {
       return true;
     }
     this.router.navigate(['/login']);
