@@ -26,7 +26,7 @@ export class BookingService {
       .set('id', id)
       .set('token', this.authService.getSessionToken());
 
-    return this.http.get(config.apiUrl + '/bookings', { params });
+    return this.http.get(config.apiUrl + '/booking', { params });
   }
 
   DeleteById(id: string): Observable<any> {

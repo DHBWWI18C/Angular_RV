@@ -19,7 +19,6 @@ export class BookingComponent implements OnInit {
   currentRoom: Room;
   listItems: NgListItem[];
   panelOpen: boolean = false;
-  prices: Prices;
 
   constructor(
     private bookingService: BookingService,
@@ -57,7 +56,8 @@ export class BookingComponent implements OnInit {
         matIcon: 'book',
         value: this.booking.id.toString()
       }
-    ]
+    ];
+    this.getPrices();
   }
 
 
@@ -65,7 +65,7 @@ export class BookingComponent implements OnInit {
     this.bookingService.getPrices(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)
       .subscribe(
         (data: Prices) => {
-          this.prices = data;
+          this.booking.prices = data;
         }
       );
   }
