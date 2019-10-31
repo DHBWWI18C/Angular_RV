@@ -16,7 +16,9 @@ export class BookingService {
   ) { }
 
   getList(): Observable<any> {
-    return this.http.get(config.apiUrl + '/bookings');
+    let params = new HttpParams()
+      .set('token', this.authService.getSessionToken());
+    return this.http.get(config.apiUrl + '/bookings', { params });
   }
 
   getById(id: string): Observable<any> {

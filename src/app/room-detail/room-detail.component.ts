@@ -9,6 +9,7 @@ import { BookingService } from '../services/booking.service';
 import { ROOMS } from '../database/db-rooms';
 import { Prices } from '../interfaces/Prices';
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -47,6 +48,7 @@ export class RoomDetailComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
+    private authService: AuthenticationService,
     private bookingService: BookingService,
     private roomService: RoomsService,
     private route: ActivatedRoute,
@@ -54,6 +56,9 @@ export class RoomDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Checken, ob User eingelogt ist, wenn nicht -> redirect
+    this.authService.proofUserAuth();
+
     //Hinzufügen von Validators, die erfüllt werden müssen, bevor der User weiter gehen kann
     this.firstFormGroup = this._formBuilder.group({   
       startDateCtl: ['', Validators.required],        

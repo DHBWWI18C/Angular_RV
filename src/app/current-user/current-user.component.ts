@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/User';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-current-user',
@@ -14,10 +15,14 @@ export class CurrentUserComponent implements OnInit {
   user: User;
 
   constructor(
+    private authService: AuthenticationService,
     private userService: UserService
   ) { }
 
   ngOnInit() {
+    //Checken, ob User eingelogt ist, wenn nicht -> redirect
+    this.authService.proofUserAuth();
+
     this.userService.getCurrentUser()
       .subscribe(
         (data: User) => {
