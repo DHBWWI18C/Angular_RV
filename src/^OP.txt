@@ -1,3 +1,6 @@
-- Login-Handling
+- Login-Handling - done 
+- Buchen mit live Daten - done
+
+- Responsive Design
+- Logout-Button/Funktion
 - Liste von Buchungen
-- Buchen mit live Daten

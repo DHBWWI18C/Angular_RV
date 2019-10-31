@@ -28,6 +28,7 @@ export class RoomDetailComponent implements OnInit {
   minDate = new Date();
 
   currentRoom: Room;
+  roomAvailable: boolean = false;
   bookingCreated: boolean = false;
 
   booking: Booking = {
@@ -59,6 +60,7 @@ export class RoomDetailComponent implements OnInit {
     //Checken, ob User eingelogt ist, wenn nicht -> redirect
     this.authService.proofUserAuth();
 
+    this.bookingCreated = false;
     //Hinzufügen von Validators, die erfüllt werden müssen, bevor der User weiter gehen kann
     this.firstFormGroup = this._formBuilder.group({   
       startDateCtl: ['', Validators.required],        
@@ -88,17 +90,28 @@ export class RoomDetailComponent implements OnInit {
 
   }
 
+  checkRoomAvailable() {
+    this.roomService.isRoomAvailable(this.currentRoom.id, this.booking.startDate, this.booking.endDate)
+     .subscribe(
+      (data: boolean) => {
+        this.roomAvailable = data;
+      }
+    )
+  }
+
   //ChangeEvent
   updateStartDate(event) {
     this.booking.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
     if (this.booking.endDate != '') {  //TODO
       this.updatePrices();
+      this.checkRoomAvailable();
     }
   }
   updateEndDate(event) {
     this.booking.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
     if (this.booking.startDate != '') {  //TODO
       this.updatePrices();
+      this.checkRoomAvailable();
     }
   }
 
@@ -126,9 +139,9 @@ export class RoomDetailComponent implements OnInit {
         (data: Booking) => { this.booking = data; }
       )
     this.bookingCreated = true;
-
   }
 
+  /*
   getPrices_init(): Prices {
     let _prices: Prices = {
       priceSum: 200,
@@ -143,5 +156,5 @@ export class RoomDetailComponent implements OnInit {
     let room = ROOMS[id - 1];
     return room;
   }
-
+*/
 }

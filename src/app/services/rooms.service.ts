@@ -15,8 +15,9 @@ import { Size } from '../interfaces/Size';
 })
 export class RoomsService {
 
-  constructor(private http: HttpClient) {
-
+  constructor(
+    private http: HttpClient
+    ) {
   }
   
   getRoom(id: string): Observable<any> {
@@ -52,6 +53,15 @@ export class RoomsService {
 
 
     return this.http.get(config.apiUrl + '/rooms', { params });
+  }
+
+  isRoomAvailable(roomId: number, startDate: string, endDate: string): Observable<any> {
+    let params = new HttpParams()
+    .set('roomId' ,roomId.toString())
+    .set('startDate', startDate)
+    .set('endDate', endDate);
+
+    return this.http.get(config.apiUrl + '/isRoomAvailable', { params });
   }
 
   getRoomSizeId(roomSize: string): number {
