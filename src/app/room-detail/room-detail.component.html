@@ -29,14 +29,12 @@
             <p>Start-Value: {{ booking.startDate }}</p>
             <p>End-Value: {{ booking.endDate }}</p>
             <div>
-              <button mat-button matStepperNext>Weiter</button>
+              <button mat-button matStepperNext [disabled]="!roomAvailable">Weiter</button>
             </div>
           </form>
         </mat-step>
         <mat-step [editable]="!bookingCreated" [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
-            <!--<mat-step [editable]="false">
-        <form > -->
             <ng-template matStepLabel>Sonderleistungen buchen</ng-template>
 
             <br>

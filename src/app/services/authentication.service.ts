@@ -26,11 +26,12 @@ export class AuthenticationService {
 
   isLoggedIn(): boolean {
     let token = sessionStorage.getItem(config.sessionAuth);
-    if (token !== null) {
+    if (token != null) {
       return true;
     }
     return false;
   }
+
 
   getSessionToken(): string {
     return sessionStorage.getItem(config.sessionAuth);
