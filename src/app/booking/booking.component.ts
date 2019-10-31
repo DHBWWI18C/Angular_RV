@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from '../interfaces/Booking';
 import { Room } from '../interfaces/Room';
 import { RoomsService } from '../services/rooms.service';
-import { ROOMS } from '../database/db-rooms';
 import { NgListItem } from '../interfaces/NgListItem';
 
 @Component({
@@ -15,7 +14,6 @@ export class BookingComponent implements OnInit {
   @Input()
   booking: Booking;
 
-  room: Room;
   currentRoom: Room;
   listItems: NgListItem[];
   panelOpen: boolean = false;
@@ -25,7 +23,7 @@ export class BookingComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    this.currentRoom = ROOMS[1];
+    /*
     this.booking = {
       id: 434345,
       roomId: this.currentRoom.id,
@@ -40,15 +38,15 @@ export class BookingComponent implements OnInit {
         foodPrice: 100,
         roomPrice: 100
       }
-    }
-    /*
-    this.roomService.getRoom(this.booking.roomId)
+    }*/
+  
+    this.roomService.getRoom(this.booking.roomId.toString())
       .subscribe(
         (data: Room) => {
-          this.room = data;
+          this.currentRoom = data;
         }
-      )
-      */
+      );
+    
      this.listItems = [
       {
         description: 'Buchungsnummer',
