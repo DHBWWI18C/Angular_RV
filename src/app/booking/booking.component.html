@@ -1,19 +1,27 @@
-<mat-expansion-panel>
+<mat-expansion-panel (opened)="panelOpen = !panelOpen" (closed)="panelOpen = !panelOpen" class="panel">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            This is the expansion title
+            {{ currentRoom.name }} (Buchung #{{ booking.id }})
         </mat-panel-title>
-        <mat-panel-description>
-            BLAbla
+        <mat-panel-description *ngIf="!panelOpen">
+            {{ booking.startDate }} - {{ booking.endDate }}
         </mat-panel-description>
+        <mat-panel-description *ngIf="!panelOpen">
+            {{ booking.prices.priceSum | currency: 'EUR' }}
+        </mat-panel-description>
+
     </mat-expansion-panel-header>
-    <a routerLink="/room/{{booking.roomId}}">
-        <app-room-card [room]="currentRoom" [showBookButton]="false" [showBody]="false">
-        </app-room-card>
-    </a>
-    <app-price-list
-        [prices]="booking.prices"
-    >
-    </app-price-list>
-    <p>Buchungsnummer: #04343</p>
+
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+            <app-price-list [prices]="booking.prices" [additionalItems]="listItems">
+            </app-price-list>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <a routerLink="/room/{{booking.roomId}}">
+                <app-room-card [room]="currentRoom" [showBookButton]="false" [showBody]="false">
+                </app-room-card>
+            </a>
+        </mat-grid-tile>
+    </mat-grid-list>
 </mat-expansion-panel>

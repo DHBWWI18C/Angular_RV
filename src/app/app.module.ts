@@ -16,6 +16,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 import 'hammerjs';
 
@@ -41,7 +43,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterFormComponent },
   { path: 'room/:id', component: RoomDetailComponent },
   { path: 'user', component: CurrentUserComponent },
-  { path: 'bookings', component: BookingComponent },
+  { path: 'bookings', component: BookingListComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -84,7 +86,8 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatDividerModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatGridListModule
   ],
   providers: [
     DatePipe,
