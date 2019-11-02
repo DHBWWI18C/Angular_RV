@@ -55,9 +55,11 @@
         </mat-step>
         <mat-step (click)="bookRoom()">
           <ng-template matStepLabel>Geschafft!</ng-template>
-          <h3>Vielen Dank!</h3>
+          <h3>Buchungsbestätigung</h3>
           <p>Wir sagen DANKE!</p>
-          <p>Ihre Buchungsnummer: {{ booking.id }}</p>
+          
+          <h5>Ihre Buchungsnummer: {{ booking.id }}</h5>
+          <p>Eine Buchungsbestätigung wird Ihnen per E-Mail zugesandt. Sollten Sie Ihre Buchung stornieren wollen, oder wenn Sie weitere Fragen haben, wenden Sie sich bitte an support@raumverwaltung.de</p>
         </mat-step>
       </mat-horizontal-stepper>
     </div>

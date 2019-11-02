@@ -18,8 +18,6 @@ export class BookingListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //Checken, ob User eingelogt ist, wenn nicht -> redirect
-    this.authService.proofUserAuth();
     
     this.bookingService.getList()
       .subscribe(

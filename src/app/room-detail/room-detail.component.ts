@@ -57,8 +57,6 @@ export class RoomDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //Checken, ob User eingelogt ist, wenn nicht -> redirect
-    this.authService.proofUserAuth();
 
     this.bookingCreated = false;
     //Hinzufügen von Validators, die erfüllt werden müssen, bevor der User weiter gehen kann
