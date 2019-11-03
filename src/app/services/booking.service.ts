@@ -74,7 +74,6 @@ export class BookingService {
       params = params.set('wifi', '0');
     }
 
-    console.log(params);
     return params;
   }
 
