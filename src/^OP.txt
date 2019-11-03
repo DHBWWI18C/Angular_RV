@@ -1,9 +1,13 @@
 - Login-Handling - done 
 - Buchen mit live Daten - done
+- Liste von Buchungen - done
+- Logout-Button/Funktion - done
+- Responsive Design - done
 
-- Responsive Design
-- Logout-Button/Funktion
-- Liste von Buchungen
+- ErrorHandling
+    - mein Benutzer
+    - +andere
+- EndDatum
 
 <button mat-button (click)="stepper.reset()">Reset</button>
 <!--TODO reset vllt in Suche noch einbauen-->

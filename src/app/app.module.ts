@@ -17,10 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
-
-
 import 'hammerjs';
-
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
@@ -33,17 +30,20 @@ import { DatePipe } from '@angular/common';
 import { BookingComponent } from './booking/booking.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { PriceListComponent } from './price-list/price-list.component';
-//import { BookingComponent } from './bookings/booking.component';
-
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { LoginGuard } from './services/login.guard';
 
 
 const appRoutes: Routes = [
-  { path: '', component: RoomListComponent },
+  { path: '', canActivate: [LoginGuard], component: RoomListComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'room/:id', component: RoomDetailComponent },
-  { path: 'user', component: CurrentUserComponent },
-  { path: 'bookings', component: BookingListComponent },
+  { path: 'room/:id', canActivate: [LoginGuard], component: RoomDetailComponent },
+  { path: 'user', canActivate: [LoginGuard], component: CurrentUserComponent },
+  { path: 'bookings', canActivate: [LoginGuard], component: BookingListComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -59,7 +59,8 @@ const appRoutes: Routes = [
     CurrentUserComponent,
     BookingComponent,
     BookingListComponent,
-    PriceListComponent
+    PriceListComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +88,10 @@ const appRoutes: Routes = [
     MatDividerModule,
     MatListModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatMenuModule
   ],
   providers: [
     DatePipe,

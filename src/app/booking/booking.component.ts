@@ -47,6 +47,7 @@ export class BookingComponent implements OnInit {
       .subscribe(
         (data: Room) => {
           this.currentRoom = data;
+          this.getPrices();
         }
       );
     
@@ -57,9 +58,7 @@ export class BookingComponent implements OnInit {
         value: this.booking.id.toString()
       }
     ];
-    this.getPrices();
   }
-
 
   getPrices() {
     this.bookingService.getPrices(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi)

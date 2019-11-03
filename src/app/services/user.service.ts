@@ -47,6 +47,7 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<any> {
+    console.log(user);
     let params = new HttpParams()
       .set('userId', user.id.toString())
       .set('firstName', user.firstName)

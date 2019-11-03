@@ -40,11 +40,10 @@ export class RoomListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.authService.proofUserAuth();
 
     this.roomSizes = SIZES;
-    this.rooms = ROOMS;
-    //this.getRoomsList();
+    //this.rooms = ROOMS;
+    this.getRoomsList();
 
   }
 

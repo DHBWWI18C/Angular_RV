@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 
 
@@ -8,30 +7,17 @@ import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 })
 export class AuthenticationService {
 
-  constructor(
-    private router: Router
-  ) { }
-
   // **********************+***************
   // **** AUTHENTIFICATION and SESSION ****
   // **********************+***************
 
-  proofUserAuth(): boolean {
-    if (this.isLoggedIn()) {
-      return true;
-    }
-    this.router.navigate(['/login']);
-    return false;
-  }
-
   isLoggedIn(): boolean {
     let token = sessionStorage.getItem(config.sessionAuth);
-    if (token != null) {
+    if (token) {
       return true;
     }
     return false;
   }
-
 
   getSessionToken(): string {
     return sessionStorage.getItem(config.sessionAuth);

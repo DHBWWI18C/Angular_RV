@@ -1,37 +1,37 @@
 <div class="container">
-  <form class="form-register">
+  <form [formGroup]="registerForm" class="form-register">
     <h1 class="h3 mb-3 font-weight-normal">Benutzer anlegen</h1>
       <mat-form-field appearance="outline">
         <mat-label>Benutzername</mat-label>
-        <input matInput (input)="data.username = $event.target.value" placeholder="badman88" required>
+        <input matInput formControlName="userName" placeholder="badman88">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>E-Mail</mat-label>
-        <input matInput (input)="data.email = $event.target.value" placeholder="max@mustermann.de" required>
+        <input matInput formControlName="email" placeholder="max@mustermann.de">
         <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Vorname</mat-label>
-        <input matInput (input)="data.firstName = $event.target.value" placeholder="Max" required>
+        <input matInput formControlName="firstName" placeholder="Max">
         <mat-icon matSuffix>account_box</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Nachname</mat-label>
-        <input matInput (input)="data.lastName = $event.target.value" placeholder="Mustermann" required>
+        <input matInput formControlName="secondName" placeholder="Mustermann">
         <mat-icon matSuffix>account_box</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Passwort</mat-label>
-        <input type="password" matInput (input)="data.password = $event.target.value" placeholder="#Iambad88" required>
+        <input type="password" matInput formControlName="password" placeholder="#Iambad88">
         <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
       <br>
-        <button (click)="register()" mat-raised-button color="primary">Registrieren</button>
+        <button (click)="register()" [disabled]="!registerForm.valid" mat-raised-button color="primary">Registrieren</button>
 
     <!--    Hier kann ein Bild/Logo hinzugefügt werden-->
     <!--    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
