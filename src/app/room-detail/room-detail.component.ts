@@ -10,6 +10,7 @@ import { ROOMS } from '../database/db-rooms';
 import { Prices } from '../interfaces/Prices';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from '../services/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -49,10 +50,10 @@ export class RoomDetailComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private authService: AuthenticationService,
     private bookingService: BookingService,
     private roomService: RoomsService,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
     private datepipe: DatePipe
   ) { }
 
@@ -83,9 +84,6 @@ export class RoomDetailComponent implements OnInit {
           this.booking.prices = data;
         }
       );
-    
-    //this.booking.prices = this.getPrices_init();
-
   }
 
   checkRoomAvailable() {
@@ -132,28 +130,22 @@ export class RoomDetailComponent implements OnInit {
   }
 
   bookRoom() {
-    console.log("hallo");
     this.bookingService.create(this.currentRoom.id, this.booking.startDate, this.booking.endDate, this.booking.food, this.booking.wifi, this.booking.prices.priceSum)
       .subscribe(
-        (data: Booking) => { this.booking = data; }
+        (data: Booking) => 
+        { 
+          if(data){
+            this.booking = data;
+            this.snackBar.open('Buchung erfolgreich', 'Ok', {
+              duration: 2000,
+            });
+          } else {
+            this.snackBar.open('Buchung leider nicht erfolgreich', 'Ok', {
+              duration: 2000,
+            });
+          }
+        }
       )
     this.bookingCreated = true;
   }
-
-  /*
-  getPrices_init(): Prices {
-    let _prices: Prices = {
-      priceSum: 200,
-      wifiPrice: 0,
-      foodPrice: 0,
-      roomPrice: 200
-    };
-    return _prices;
-  }
-
-  getRoomById(id): Room {
-    let room = ROOMS[id - 1];
-    return room;
-  }
-*/
 }

@@ -26,7 +26,7 @@
               <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
             </mat-form-field>
             <div>
-              <button mat-button matStepperNext color="accent" [disabled]="!roomAvailable">Weiter</button>
+              <button mat-flat-button matStepperNext color="accent" [disabled]="!roomAvailable">Weiter</button>
             </div>
           </form>
         </mat-step>
@@ -56,7 +56,7 @@
         <mat-step (click)="bookRoom()">
           <ng-template matStepLabel>Geschafft!</ng-template>
           <h3>Buchungsbestätigung</h3>
-          <p>Wir sagen DANKE!</p>
+          <p>Wir sagen danke!</p>
           
           <h5>Ihre Buchungsnummer: {{ booking.id }}</h5>
           <p>Eine Buchungsbestätigung wird Ihnen per E-Mail zugesandt. Sollten Sie Ihre Buchung stornieren wollen, oder wenn Sie weitere Fragen haben, wenden Sie sich bitte an support@raumverwaltung.de</p>
