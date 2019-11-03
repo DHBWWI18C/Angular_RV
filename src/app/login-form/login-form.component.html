@@ -1,16 +1,16 @@
 <div class="container">
-    <form class="form-signin">
+    <form [formGroup]="loginForm" class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal">Bitte anmelden</h1>
 
         <mat-form-field appearance="outline">
             <mat-label>Benutzername</mat-label>
-            <input matInput (input)="data.username = $event.target.value" placeholder="badman88" required>
+            <input matInput formControlName="username" placeholder="badman88" required>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Passwort</mat-label>
-            <input matInput (input)="data.password = $event.target.value" type="password" placeholder="#Iambad88"
+            <input matInput formControlName="password" type="password" placeholder="#Iambad88"
                 required>
             <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
@@ -19,7 +19,7 @@
             <mat-slide-toggle>Anmeldung merken</mat-slide-toggle>
         </div>
         <br>
-        <button (click)="login()" mat-raised-button color="primary">Login</button>
+        <button (click)="login()" [disabled]="!loginForm.valid" mat-raised-button color="primary">Login</button>
         <hr />
         <p>
             Sie haben noch keinen Account?

@@ -20,7 +20,7 @@ export class MainNavComponent implements OnInit {
       shareReplay()
     );
 
-  userLoggedIn: boolean;
+  userLoggedIn: boolean = true;
 
   constructor(
     private authService: AuthenticationService,
@@ -31,9 +31,6 @@ export class MainNavComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    //TODO funkt so nicht
-    this.authService.setUserInSession('token123');
-    this.userLoggedIn = this.authService.isLoggedIn();
   }
 
   logout() {

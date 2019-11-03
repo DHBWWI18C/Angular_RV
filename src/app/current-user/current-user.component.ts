@@ -17,7 +17,6 @@ export class CurrentUserComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private authService: AuthenticationService,
     private userService: UserService
   ) { }
 
@@ -33,7 +32,7 @@ export class CurrentUserComponent implements OnInit {
 
     this.userForm.disable();
 
-    
+
     this.userService.getCurrentUser()
       .subscribe(
         (data: User) => {
@@ -47,24 +46,29 @@ export class CurrentUserComponent implements OnInit {
           })
         }
       )
-    
-
   }
 
   saveUser() {
     this.editUser = false;
     this.userForm.disable();
     this.userService.updateUser({
-      ...this.user,
+      ...this.user,     
+      //Current User wird mit folgenden Werten ersetzt:
       userName: this.userForm.value.userNameCtl,
       firstName: this.userForm.value.firstNameCtl,
-      // todo: andere hinzufügen
+      secondName: this.userForm.value.lastNameCtl,
+      mail: this.userForm.value.email,
+      password: this.userForm.value.password
     })
       .subscribe((data) => data = data);
   }
 
   edit() {
-    this.userForm.enable();
-    this.editUser = true;
+    if (this.editUser) {
+      this.userForm.disable();
+    } else {
+      this.userForm.enable();
+    }
+    this.editUser = !this.editUser;
   }
 }

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { AuthenticationService } from '../services/authentication.service';
 import {Token} from '../interfaces/Token';
 import { Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -12,24 +13,26 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
-  data = {
-    username: '',
-    password: ''
-  };
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthenticationService,
     private userService: UserService,
     private router: Router,
+    private _formBuilder: FormBuilder,
     private snackBar: MatSnackBar
   ) { }
 
 
   ngOnInit() {
+    this.loginForm = this._formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   login() {
-    this.userService.login(this.data.username, this.data.password)
+    this.userService.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
         (result: Token) => {
           if (result != null) {

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 
 
@@ -19,7 +18,6 @@ export class AuthenticationService {
     }
     return false;
   }
-
 
   getSessionToken(): string {
     return sessionStorage.getItem(config.sessionAuth);

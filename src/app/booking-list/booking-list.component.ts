@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from '../interfaces/Booking';
 import { BookingService } from '../services/booking.service';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-booking-list',
@@ -13,7 +12,6 @@ export class BookingListComponent implements OnInit {
   bookings: Booking[];
 
   constructor(
-    private authService: AuthenticationService,
     private bookingService: BookingService
   ) { }
 
