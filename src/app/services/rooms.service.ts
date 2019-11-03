@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Room } from '../interfaces/Room';
-import { ROOMS } from '../database/db-rooms';
 import * as config from '../CONFIG'; //Konfig-Datei wird gelanden (CONFIG.ts)
 import { SIZES } from '../database/db-roomSizes';
 import { Size } from '../interfaces/Size';

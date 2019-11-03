@@ -33,7 +33,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   register() {
-    this.userService.register(this.registerForm.value.username, this.registerForm.value.password, this.registerForm.value.firstName, this.registerForm.value.lastName, this.registerForm.value.email)
+    this.userService.register(this.registerForm.value.userName, this.registerForm.value.password, this.registerForm.value.firstName, this.registerForm.value.secondName, this.registerForm.value.email)
       .subscribe(
         (result: Token) => {
           if (result) {
