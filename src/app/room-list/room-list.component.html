@@ -57,31 +57,33 @@
           <mat-icon>date_range</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
+      <form [formGroup]="dateFormGroup">
+        <mat-form-field>
+          <input matInput (dateChange)="updateStartDate($event)" [min]="minDateStart" [matDatepicker]="pickerStartDate"
+            placeholder="Von" formControlName="startDateCtl">
+          <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+          <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
+          <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput (dateChange)="updateStartDate($event)" [min]="minDateStart" [matDatepicker]="pickerStartDate" placeholder="Von" required>
-        <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
-        <!-- touchUi: bewirkt, dass es ein Pop-Up ist-->
-        <mat-datepicker touchUi #pickerStartDate></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput (dateChange)="updateEndDate($event)" [min]="minDateEnd" [matDatepicker]="pickerEndDate"
-          (input)="filters.endDate = $event.target.value" placeholder="Bis">
-        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
-      </mat-form-field>
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevPanel()">Zurück</button>
-        <button mat-button color="primary" (click)="filter()">Filtern</button>
-      </mat-action-row>
+        <mat-form-field>
+          <input matInput (dateChange)="updateEndDate($event)" [min]="minDateEnd" [matDatepicker]="pickerEndDate"
+            placeholder="Bis" formControlName="endDateCtl">
+          <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
+        </mat-form-field>
+      </form>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevPanel()">Zurück</button>
+          <button mat-button color="primary" (click)="filter()">Filtern</button>
+        </mat-action-row>
     </mat-expansion-panel>
 
   </mat-accordion>
 
   <br>
   <button mat-raised-button color="accent" (click)="filter()" type="button">Räume filtern!</button>
-  <a mat-button routerLink="/"><span>Reset</span></a>
+  <a mat-button (click)="resetForm()"><span>Reset</span></a>
 </div>
 
 <br>

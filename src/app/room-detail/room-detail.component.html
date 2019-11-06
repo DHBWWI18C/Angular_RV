@@ -20,7 +20,7 @@
             </mat-form-field>
 
             <mat-form-field id="pickerEndDate">
-              <input matInput (dateChange)="updateEndDate($event)" formControlName="endDateCtl" [min]="minDate"
+              <input matInput (dateChange)="updateEndDate($event)" formControlName="endDateCtl" [min]="minDateEnd"
                 [matDatepicker]="pickerEndDate" placeholder="Bis" required>
               <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
               <mat-datepicker touchUi #pickerEndDate></mat-datepicker>
@@ -36,6 +36,7 @@
 
             <br>
             <mat-slide-toggle (change)="updateWifi()">WiFi buchen</mat-slide-toggle>
+            <br>
             <mat-slide-toggle (change)="updateFood()">Verpflegung buchen</mat-slide-toggle>
             <br>
             <br>
@@ -64,27 +65,6 @@
       </mat-horizontal-stepper>
     </div>
     <div class="row">
-      <!--
-      <mat-card>
-        <mat-card-title>Preisübersicht</mat-card-title>
-        <span>WiFi-Preis</span>
-        <span class="price"> {{ booking.prices.wifiPrice | currency: 'EUR' }} </span>
-        <br>
-        <mat-divider></mat-divider>
-        <span>Verpflegung</span>
-        <span class="price"> {{ booking.prices.foodPrice | currency: 'EUR' }} </span>
-        <mat-divider></mat-divider>
-        <br>
-        <span>Raum-Preis</span>
-        <span class="price"> {{ booking.prices.roomPrice | currency: 'EUR' }} </span>
-        <mat-divider></mat-divider>
-        <br>
-        <mat-divider></mat-divider>
-        <br>
-        <span>Gesamtpreis</span>
-        <span class="price"> {{ booking.prices.priceSum | currency: 'EUR' }} </span>
-      </mat-card>
-      -->
       <app-price-list
         [prices]="booking.prices"
       >

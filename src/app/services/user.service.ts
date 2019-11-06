@@ -36,8 +36,9 @@ export class UserService {
   }
 
   logout(): Observable<any> {
-    this.authService.deleteUserFromSession();
-    return this.http.post(config.apiUrl + '/logout', {});
+    let params = new HttpParams()
+      .set('token', this.authService.getSessionToken());
+    return this.http.post(config.apiUrl + '/logout', params);
   }
 
   getCurrentUser(): Observable<any> {

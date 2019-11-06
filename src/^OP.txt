@@ -7,7 +7,9 @@
 - ErrorHandling
     - mein Benutzer
     - +andere
-- EndDatum
+- EndDatumz validieren und nicht vor Startdatum
+- Reset-Button für Such-Form
+- Beamer Feld "egal" bei Suchen
 
 <button mat-button (click)="stepper.reset()">Reset</button>
 <!--TODO reset vllt in Suche noch einbauen-->
