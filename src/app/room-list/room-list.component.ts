@@ -5,7 +5,7 @@ import { SIZES } from '../database/db-roomSizes';
 import { Size } from '../interfaces/Size';
 import { RoomsService } from '../services/rooms.service';
 import { Room } from '../interfaces/Room';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -30,21 +30,23 @@ export class RoomListComponent implements OnInit {
 
   minDateStart = new Date();
   minDateEnd = new Date();
+  dateFormGroup: FormGroup;
 
   activePanel = 0; //Filter-Panels 
 
   constructor(
     private roomService: RoomsService,
-    private authService: AuthenticationService,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-
+    this.dateFormGroup = this._formBuilder.group({   
+      startDateCtl: [''],
+      endDateCtl: ['']
+    });
     this.roomSizes = SIZES;
-    //this.rooms = ROOMS;
     this.getRoomsList();
-
   }
 
   getRoomsList() {
@@ -53,6 +55,9 @@ export class RoomListComponent implements OnInit {
         (result: Room[]) => {
           this.rooms = result;
           console.log(this.rooms);
+        },
+        error => {
+          console.log(error);
         }
       );
   }
@@ -84,9 +89,15 @@ export class RoomListComponent implements OnInit {
   //ChangeEvent
   updateStartDate(event) {
     this.filters.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    this.minDateEnd = new Date(this.filters.startDate);
+    this.minDateEnd = new Date(this.datepipe.transform(event.value, 'yyyy-MM-dd'));
   }
   updateEndDate(event) {
     this.filters.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
+  }
+
+  resetForm() {
+    this.dateFormGroup.reset();
+    this.filters.beamer = "";
+    this.filters.roomSize = "";
   }
 }

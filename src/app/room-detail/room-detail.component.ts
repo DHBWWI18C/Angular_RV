@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from '../interfaces/Room';
 import { Booking } from '../interfaces/Booking';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../services/rooms.service';
-import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookingService } from '../services/booking.service';
-import { ROOMS } from '../database/db-rooms';
 import { Prices } from '../interfaces/Prices';
 import { DatePipe } from '@angular/common';
-import { AuthenticationService } from '../services/authentication.service';
 import { MatSnackBar } from '@angular/material';
 
 
@@ -19,8 +16,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./room-detail.component.css']
 })
 export class RoomDetailComponent implements OnInit {
-  //room$: Room;
-
+  
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -98,15 +94,15 @@ export class RoomDetailComponent implements OnInit {
   //ChangeEvent
   updateStartDate(event) {
     this.booking.startDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    if (this.booking.endDate != '') {  //TODO
+    if (this.booking.endDate != '') {
       this.updatePrices();
       this.checkRoomAvailable();
-      this.minDateEnd = new Date(this.booking.startDate);
     }
+    this.minDateEnd = new Date(this.datepipe.transform(event.value, 'yyyy-MM-dd'));
   }
   updateEndDate(event) {
     this.booking.endDate = this.datepipe.transform(event.value, 'dd.MM.yyyy');
-    if (this.booking.startDate != '') {  //TODO
+    if (this.booking.startDate != '') {
       this.updatePrices();
       this.checkRoomAvailable();
     }
